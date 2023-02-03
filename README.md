@@ -10,7 +10,7 @@ Esta aplicação tem objetivo de ser um formulário de inscrição online para f
 
 cd cta-portal-candidato
 
-- Segundo passo executar este  comando:
+-Segundo passo executar este  comando:
 
 python -m venv venv
 
@@ -18,10 +18,10 @@ python -m venv venv
 
 venv\scripts\activate.bat
 
-- Quarto passo passo executar este  comando: 
+- Terceiro passo executar este  comando: 
 
 pip install -r requirements.txt
 
-- Quinto passo e por ultimo exexutar o comando que de fato irar abrir aplicação:
+- Terceiro passo e por ultimo exexutar o comando que de fato irar abrir aplicação:
 
 flask --app app run
