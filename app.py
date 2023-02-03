@@ -92,10 +92,27 @@ class UserSub(FlaskForm):
         validators=[DataRequired(),
         Length(max=64)])
 
+    tel = StringField(label=('Telefone pessoal'),
+        validators=[DataRequired(),
+        Length(max=64)])
 
 
+    tel_message = StringField(label=('Telefone para Recado'),
+        validators=[DataRequired(),
+        Length(max=64)])
+
+    personal_email = StringField(label=('E-mail pessoal'),
+        validators=[DataRequired(),
+        Length(max=64)])
 
 
+    message_email = StringField(label=('E-mail para Recado'),
+        validators=[DataRequired(),
+        Length(max=64)])
+
+    school = StringField(label=('Colégio'),
+        validators=[DataRequired(),
+        Length(max=64)])
 
     submit = SubmitField(label=('Enviar'))
 
