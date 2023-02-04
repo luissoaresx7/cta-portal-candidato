@@ -92,6 +92,37 @@
         <div class="container col-6 col-md-3">
             <h2>Informações sobre saúde</h2>
         </div>
+        <div class="form-group  ">
+            {{ form.vaccine_covid.label }}
+            {{ form.vaccine_covid(class="form-control") }}
+        </div>
+        <div class="container col-6 col-md-3">
+            <h2>Informações sobre composição familiar</h2>
+        </div>
+         <div class="form-group  ">
+            {{ form.mame_mom.label }}
+            {{ form.mame_mom(class="form-control") }}
+        </div>
+         <div class="form-group  ">
+            {{ form.profession_mom.label }}
+            {{ form.profession_mom(class="form-control") }}
+        </div>
+         <div class="form-group  ">
+            {{ form.scholarity_mom.label }}
+            {{ form.scholarity_mom(class="form-control") }}
+        </div>
+         <div class="form-group  ">
+            {{ form.mame_dad.label }}
+            {{ form.mame_dad(class="form-control") }}
+        </div> <div class="form-group  ">
+            {{ form.profession_dad.label }}
+            {{ form.profession_dad(class="form-control") }}
+        </div>
+         <div class="form-group  ">
+            {{ form.scholarity_dad.label }}
+            {{ form.scholarity_dad(class="form-control") }}
+        </div>
+
 
         {% for field, errors in form.errors.items() %}
             <div class="alert alert-danger" role="alert">

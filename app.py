@@ -110,9 +110,44 @@ class UserSub(FlaskForm):
         validators=[DataRequired(),
         Length(max=64)])
 
-    school = StringField(label=('Colégio'),
+    school = StringField(label=('Colégio:'),
         validators=[DataRequired(),
         Length(max=64)])
+
+    vaccine_covid = SelectField(u'Vacina Covid:',
+        choices=[('0', ''), ('1', 'Primeira dose'), ('2', 'Segunda dose'),('3', 'Terceira dose'), ('4', 'Quarta dose')],
+        validators=[DataRequired()], )
+
+    mame_mom = StringField(label=('Nome da Mãe'),
+        validators=[DataRequired(),
+        Length(max=64)])
+
+    profession_mom = StringField(label=('Profissão da Mãe'),
+        validators=[DataRequired(),
+        Length(max=64)])
+
+    scholarity_mom = SelectField(u'Escolaridade da Mãe:',
+        choices=[('0', ''), ('1', 'escreve '), ('2', 'Ensino Fundamental completo '),('3', 'Ensino Fundamental incompleto '), ('4', 'Ensino Médio completo ')
+                 , ('5', 'Ensino Médio incompleto '), ('6', 'Terceiro Grau completo'),('7', 'Terceiro Grau incompleto'), ('8', 'Pós-graduação completo'),('9', 'Pós-graduação incompleto')],
+        validators=[DataRequired()], )
+
+    mame_dad = StringField(label=('Nome do Pai'),
+        validators=[DataRequired(),
+        Length(max=64)])
+
+    profession_dad = StringField(label=('Profissão do Pai'),
+        validators=[DataRequired(),
+        Length(max=64)])
+
+    scholarity_dad = SelectField(u'Escolaridade do Pai:',
+        choices=[('0', ''), ('1', 'Lê e escreve '), ('2', 'Ensino Fundamental completo '),('3', 'Ensino Fundamental incompleto '), ('4', 'Ensino Médio completo ')
+                 , ('5', 'Ensino Médio incompleto '), ('6', 'Terceiro Grau completo'),('7', 'Terceiro Grau incompleto'), ('8', 'Pós-graduação completo'),('9', 'Pós-graduação incompleto')],
+        validators=[DataRequired()], )
+
+
+
+
+
 
     submit = SubmitField(label=('Enviar'))
 
