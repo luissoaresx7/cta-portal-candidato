@@ -25,3 +25,9 @@ pip install -r requirements.txt
 - Terceiro passo e por ultimo exexutar o comando que de fato irar abrir aplicação:
 
 flask --app app run
+
+
+
+Referências
+
+- SQLAlchemy: https://www.digitalocean.com/community/tutorials/how-to-use-flask-sqlalchemy-to-interact-with-databases-in-a-flask-application
