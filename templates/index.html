@@ -2,9 +2,33 @@
 {% block content %}
 <H1 class="col-md col-md-offset-4" >Bem vindo</H1>
 
-<a href="{{url_for('register')}}" >Registro</a>
+<a href="{{url_for('/register')}}" >Registro</a>
 
 <a href="{{url_for('student_create')}}" >Inscrição</a>
+<div>
+    <form class="container col-6 col-md-3" method="POST" action="">
+        {{ form.csrf_token() }}
+        <div class="form-group">
+            {{ form.username_login.label }}
+            {{ form.username_login(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.password_login.label }}
+            {{ form.password_login(class="form-control") }}
+        </div>
+
+
+        {% for field, errors in form.errors.items() %}
+            <div class="alert alert-danger" role="alert">
+                <sstrong>{{ form[field].label }}</sstrong>: {{ ', '.join(errors) }}
+            </div>
+        {% endfor %}
+        <div class="form-group">
+            {{ form.submit(class="btn btn-primary")}}
+        </div>
+    </form>
+</div>
 
 
 

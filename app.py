@@ -123,7 +123,7 @@ class UserSub(FlaskForm):
         validators=[Length(max=64)])
 
     scholarity_mom = SelectField(u'Escolaridade da Mãe:',
-        choices=[('0', ''), ('1', 'escreve '), ('2', 'Ensino Fundamental completo '),('3', 'Ensino Fundamental incompleto '), ('4', 'Ensino Médio completo ')
+        choices=[('0', ''), ('1', 'Lê e escreve '), ('2', 'Ensino Fundamental completo '),('3', 'Ensino Fundamental incompleto '), ('4', 'Ensino Médio completo ')
                  , ('5', 'Ensino Médio incompleto '), ('6', 'Terceiro Grau completo'),('7', 'Terceiro Grau incompleto'), ('8', 'Pós-graduação completo'),('9', 'Pós-graduação incompleto')],
         validators=[], )
 
@@ -215,4 +215,4 @@ def register():
 
 @app.route('/', methods=('GET', 'POST'))
 def index():
-    return render_template('index.html')
+    return render_template('indexteste.html')
