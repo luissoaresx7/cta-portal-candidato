@@ -24,6 +24,36 @@ class Student(db.Model):
     social_name = db.Column(db.String(64), nullable=True)
     birth_date = db.Column(db.DateTime(80), nullable=False)
     raca_cor_etinia = db.Column(db.Integer(), nullable=True)
+    gender = db.column(db.integer(), nullable=False)
+    marital_staus = db.column(db.integer(), nullable=False)
+    nacionality = db.Column(db.String(64), nullable=False)
+    state = db.Column(db.String(64), nullable=False)
+    city = db.Column(db.String(64), nullable=False)
+    rg = db.Column(db.String(64), nullable=False)
+    shipping_date_rg = db.Column(db.DateTime(80), nullable=False)
+    shipper_rg = db.Column(db.String(64), nullable=False)
+    cpf = db.Column(db.String(64), nullable=False)
+    cnh = db.Column(db.String(64), nullable=False)
+    cep = db.Column(db.String(64), nullable=False)
+    address = db.Column(db.String(64), nullable=False)
+    house_number = db.Column(db.String(64), nullable=False)
+    complement_address = db.Column(db.String(64), nullable=False)
+    tel = db.Column(db.String(64), nullable=False)
+    tel_message = db.Column(db.String(64), nullable=False)
+    personal_email = db.Column(db.String(64), nullable=False)
+    message_email = db.Column(db.String(64), nullable=False)
+    school = db.Column(db.String(64), nullable=False)
+    vaccine_covid  = db.Column(db.String(64), nullable=False)
+    mame_mom  = db.Column(db.String(64), nullable=False)
+    profession_mom = db.Column(db.String(64), nullable=False)
+    scholarity_mom = db.Column(db.String(64), nullable=False)
+    mame_dad = db.Column(db.String(64), nullable=False)
+    profession_dad = db.Column(db.String(64), nullable=False)
+    scholarity_dad = db.Column(db.String(64), nullable=False)
+
+
+
+
 
     def __repr__(self):
         return f'<Student {self.complete_name}>'
@@ -98,7 +128,6 @@ class UserSub(FlaskForm):
 
     tel = StringField(label=('Telefone pessoal'),
         validators=[Length(max=64)])
-
 
     tel_message = StringField(label=('Telefone para Recado'),
         validators=[Length(max=64)])
@@ -206,6 +235,32 @@ class CreateUserForm(FlaskForm):
 
     submit = SubmitField(label=('Enviar'))
 
+class UserLogin(FlaskForm):
+    class Meta:
+        locales = ['pt_BR', 'pt']
+        def get_translations(self, form):
+            return super(FlaskForm.Meta, self).get_translations(form)
+    email_login = StringField(label=('E-mail'),
+        validators=[DataRequired(),
+        Email(),
+        Length(max=120)])
+    password_login = PasswordField(label=('Senha'),
+        validators=[DataRequired(),
+        Length(min=8, message='A senha deve ter no mínimo %(min)d caracteres.')])
+
+
+
+    submit = SubmitField(label=('Enviar'))
+
+
+
+
+
+
+
+
+
+
 @app.route('/user/register', methods=('GET', 'POST'))
 def register():
     form = CreateUserForm()
@@ -214,5 +269,7 @@ def register():
     return render_template('register.html', form=form)
 
 @app.route('/', methods=('GET', 'POST'))
-def index():
+def indexteste():
+    form = UserLogin
     return render_template('indexteste.html')
+
