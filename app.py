@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request
+
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, \
     SubmitField, SelectField, DateField, RadioField
@@ -24,32 +25,8 @@ class Student(db.Model):
     social_name = db.Column(db.String(64), nullable=True)
     birth_date = db.Column(db.DateTime(80), nullable=False)
     raca_cor_etinia = db.Column(db.Integer(), nullable=True)
-    gender = db.column(db.integer(), nullable=False)
-    marital_staus = db.column(db.integer(), nullable=False)
-    nacionality = db.Column(db.String(64), nullable=False)
-    state = db.Column(db.String(64), nullable=False)
-    city = db.Column(db.String(64), nullable=False)
-    rg = db.Column(db.String(64), nullable=False)
-    shipping_date_rg = db.Column(db.DateTime(80), nullable=False)
-    shipper_rg = db.Column(db.String(64), nullable=False)
-    cpf = db.Column(db.String(64), nullable=False)
-    cnh = db.Column(db.String(64), nullable=False)
-    cep = db.Column(db.String(64), nullable=False)
-    address = db.Column(db.String(64), nullable=False)
-    house_number = db.Column(db.String(64), nullable=False)
-    complement_address = db.Column(db.String(64), nullable=False)
-    tel = db.Column(db.String(64), nullable=False)
-    tel_message = db.Column(db.String(64), nullable=False)
-    personal_email = db.Column(db.String(64), nullable=False)
-    message_email = db.Column(db.String(64), nullable=False)
-    school = db.Column(db.String(64), nullable=False)
-    vaccine_covid  = db.Column(db.String(64), nullable=False)
-    mame_mom  = db.Column(db.String(64), nullable=False)
-    profession_mom = db.Column(db.String(64), nullable=False)
-    scholarity_mom = db.Column(db.String(64), nullable=False)
-    mame_dad = db.Column(db.String(64), nullable=False)
-    profession_dad = db.Column(db.String(64), nullable=False)
-    scholarity_dad = db.Column(db.String(64), nullable=False)
+    gender = db.Column(db.Integer(), nullable=True)
+   
 
 
 
@@ -178,10 +155,12 @@ def student_create():
         birth_date_str = request.form['birth_date']
         birth_date = datetime.datetime.strptime(birth_date_str, "%Y-%m-%d").date()
         raca_cor_etinia = request.form['raca_cor_etinia']
+        gender = request.form['gender']
         student = Student(complete_name=complete_name,
                           social_name=social_name,
                           birth_date=birth_date,
-                          raca_cor_etinia=raca_cor_etinia)
+                          raca_cor_etinia=raca_cor_etinia,
+                          gender=gender)
         db.session.add(student)
         db.session.commit()
         return redirect(url_for('student_edit', student_id=student.id))
@@ -197,10 +176,13 @@ def student_edit(student_id):
             birth_date_str = request.form.get('birth_date')
             birth_date = datetime.datetime.strptime(birth_date_str, "%Y-%m-%d").date()
             raca_cor_etinia = request.form.get('raca_cor_etinia')
+            gender = request.form.get('gender')
 
             student.social_name = social_name
             student.birth_date = birth_date
             student.raca_cor_etinia = raca_cor_etinia
+            student.gender = gender
+
 
             db.session.add(student)
             db.session.commit()
@@ -253,7 +235,9 @@ class UserLogin(FlaskForm):
     submit = SubmitField(label=('Enviar'))
 
 
-
+@app.route('/login', methods=('GET', 'POST'))
+def login():
+    return render_template('login.html',)
 
 
 
@@ -269,7 +253,6 @@ def register():
     return render_template('register.html', form=form)
 
 @app.route('/', methods=('GET', 'POST'))
-def indexteste():
-    form = UserLogin
-    return render_template('indexteste.html')
+def index():
+    return render_template('index.html',)
 
