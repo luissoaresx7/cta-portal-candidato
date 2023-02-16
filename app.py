@@ -119,33 +119,25 @@ class UserSub(FlaskForm):
     message_email = StringField(label=('E-mail para Recado'),
         validators=[Length(max=64)])
 
-    scholarity_progress = RadioField(label=
-                                'Ensino Médio', choices=[('1', 'Não concluído'), ('2', 'Em andamento'),('3', 'Concluído')])
+    scholarity_progress = RadioField(label='Ensino Médio', choices=[('1', 'Não concluído'), ('2', 'Em andamento'),('3', 'Concluído')])
 
-    school_term = RadioField(label=
-                                     'Período escolar',
-                                     choices=[('1', 'Manhã'), ('2', 'Tarde'), ('3', 'Noturno')])
+    school_term = RadioField(label='Período escolar', choices=[('1', 'Manhã'), ('2', 'Tarde'), ('3', 'Noturno')])
 
     school = StringField(label=('Colégio:'),
         validators=[Length(max=64)])
 #health#
 
-    pwd_person = RadioField(label=
-                             'Portador de alguma deficiência?',
-                             choices=[('1', 'Sim'), ('2', 'Não')])
+    pwd_person = RadioField(label='Portador de alguma deficiência?', choices=[('1', 'Sim'), ('2', 'Não')])
 
     pwd_person_affirmative = StringField(label=('Caso sim especifique'),
         validators=[Length(max=64)])
 
-    carrier_of_chronic_disease = RadioField(label=
-                            'Portador de alguma doença crônica?',
-                            choices=[('1', 'Sim'), ('2', 'Não')])
+    carrier_of_chronic_disease = RadioField(label='Portador de alguma doença crônica?', choices=[('1', 'Sim'), ('2', 'Não')])
 
     carrier_of_chronic_disease_affirmative = StringField(label=('Caso sim especifique'),
-                                        validators=[Length(max=64)])
+        validators=[Length(max=64)])
 
-    vaccine_covid = SelectField(u'Vacina Covid:',
-        choices=[('0', ''), ('1', 'Primeira dose'), ('2', 'Segunda dose'),('3', 'Terceira dose'), ('4', 'Quarta dose')],
+    vaccine_covid = SelectField(u'Vacina Covid:', choices=[('0', ''), ('1', 'Primeira dose'), ('2', 'Segunda dose'),('3', 'Terceira dose'), ('4', 'Quarta dose')],
         validators=[], )
 
 #info of family composition#
@@ -155,9 +147,8 @@ class UserSub(FlaskForm):
     profession_mom = StringField(label=('Profissão da Mãe'),
         validators=[Length(max=64)])
 
-    scholarity_mom = SelectField(u'Escolaridade da Mãe:',
-        choices=[('0', ''), ('1', 'Lê e escreve '), ('2', 'Ensino Fundamental completo '),('3', 'Ensino Fundamental incompleto '), ('4', 'Ensino Médio completo ')
-                 , ('5', 'Ensino Médio incompleto '), ('6', 'Terceiro Grau completo'),('7', 'Terceiro Grau incompleto'), ('8', 'Pós-graduação completo'),('9', 'Pós-graduação incompleto')],
+    scholarity_mom = SelectField(u'Escolaridade da Mãe:', choices=[('0', ''), ('1', 'Lê e escreve '), ('2', 'Ensino Fundamental completo '),('3', 'Ensino Fundamental incompleto '), ('4', 'Ensino Médio completo ')
+    , ('5', 'Ensino Médio incompleto '), ('6', 'Terceiro Grau completo'),('7', 'Terceiro Grau incompleto'), ('8', 'Pós-graduação completo'),('9', 'Pós-graduação incompleto')],
         validators=[], )
 
     mame_dad = StringField(label=('Nome do Pai'),
@@ -166,39 +157,34 @@ class UserSub(FlaskForm):
     profession_dad = StringField(label=('Profissão do Pai'),
         validators=[Length(max=64)])
 
-    scholarity_dad = SelectField(u'Escolaridade do Pai:',
-        choices=[('0', ''), ('1', 'Lê e escreve '), ('2', 'Ensino Fundamental completo '),('3', 'Ensino Fundamental incompleto '), ('4', 'Ensino Médio completo ')
-                 , ('5', 'Ensino Médio incompleto '), ('6', 'Terceiro Grau completo'),('7', 'Terceiro Grau incompleto'), ('8', 'Pós-graduação completo'),('9', 'Pós-graduação incompleto')],
+    scholarity_dad = SelectField(u'Escolaridade do Pai:',choices=[('0', ''), ('1', 'Lê e escreve '), ('2', 'Ensino Fundamental completo '),('3', 'Ensino Fundamental incompleto '), ('4', 'Ensino Médio completo ')
+    , ('5', 'Ensino Médio incompleto '), ('6', 'Terceiro Grau completo'),('7', 'Terceiro Grau incompleto'), ('8', 'Pós-graduação completo'),('9', 'Pós-graduação incompleto')],
         validators=[], )
 
-    children = RadioField(label=
-                             'Tem filhos?',
-                             choices=[('1', 'Sim'), ('2', 'Não')])
+    children = RadioField(label='Tem filhos?', choices=[('1', 'Sim'), ('2', 'Não')])
 
     many_childrens =  StringField(label=('Quantos Filhos?'),
         validators=[Length(max=64)])
 
-    live_whith_parents = RadioField(label=
-                         'Mora com seus pais?',
-                         choices=[('1', 'Sim'), ('2', 'Não')])
+    live_whith_parents = RadioField(label='Mora com seus pais?', choices=[('1', 'Sim'), ('2', 'Não')])
 
     lives_whith_other_family = StringField(label=('Caso não especifique'),
-                                 validators=[Length(max=64)])
+        validators=[Length(max=64)])
 
     many_people_live_house = StringField(label=('Quantas pessoas moram na sua casa?'),
-                                           validators=[Length(max=64)])
+        validators=[Length(max=64)])
 
+    member_family_name = StringField(label=('Nome'),
+        validators=[Length(max=64)])
 
+    degree_of_kinship = SelectField(u'Grau de parentesco:', choices=[('0', ''), ('1', 'Mãe/pai'), ('2', 'irmão/irmã'),('3', 'Avô/Avó'),('4', 'Tia/Tio')],
+        validators=[], )
 
+    age_member_family = StringField(label=('Idade'),
+        validators=[Length(max=64)])
 
-
-
-
-
-
-
-
-
+    income_member_family = StringField(label=('Caso trabalhe informe o valor da renda'),
+        validators=[Length(max=64)])
 
     submit = SubmitField(label=('Enviar'))
 

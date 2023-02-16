@@ -173,9 +173,47 @@
             {{ form.many_people_live_house.label }}
             {{ form.many_people_live_house(class="form-control") }}
         </div>
-
-
+         <div class="col-md col-md-offset-4">
+            <h2>Informações sobre familiares que dividem o lar</h2>
+         </div>
+        <div class="form-group  ">
+            {{ form.children.label }}
+            {{ form.children(class="") }}
+        </div>
+         <div class="form-group  ">
+            {{ form.many_childrens.label }}
+            {{ form.many_childrens(class="form-control") }}
+        </div>
+        <div class="form-group  ">
+            {{ form.live_whith_parents.label }}
+            {{ form.live_whith_parents(class="") }}
+        </div>
+        <div class="form-group  ">
+            {{ form.lives_whith_other_family.label }}
+            {{ form.lives_whith_other_family(class="form-control") }}
+        </div>
+        <div class="form-group  ">
+            {{ form.many_people_live_house.label }}
+            {{ form.many_people_live_house(class="form-control") }}
+        </div>
+        <div class="form-group  ">
+            {{ form.member_family_name.label }}
+            {{ form.member_family_name(class="form-control") }}
+        </div>
+         <div class="form-group  ">
+            {{ form.degree_of_kinship.label }}
+            {{ form.degree_of_kinship(class="form-control") }}
+        </div>
+        <div class="form-group  ">
+            {{ form.age_member_family.label }}
+            {{ form.age_member_family(class="form-control") }}
+        </div>
+        <div class="form-group  ">
+            {{ form.income_member_family.label }}
+            {{ form.income_member_family(class="form-control") }}
+        </div>
         {% for field, errors in form.errors.items() %}
+
             <div class="alert alert-danger" role="alert">
                 <sstrong>{{ form[field].label }}</sstrong>: {{ ', '.join(errors) }}
             </div>
