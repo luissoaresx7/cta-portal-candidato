@@ -1,9 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e00014;">
-  <img class="logo" src="{{url_for('static', filename='DUFRY_lOGO.png')}}" <a href="{{url_for('index')}}"</a>
+  <img class="logo" src="{{url_for('static', filename='DUFRY_lOGO.png')}}"></img>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{{url_for('register')}}">Cadastre-se<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('login')}}">Login</a>
+        </li>
+      </ul>
+  </div>
 </nav>
-<div>
+
     <h2 class="container col-6 col-md-3">Registro de Aluno</h2>
 </div>
 <div>
