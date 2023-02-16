@@ -148,6 +148,7 @@ class UserSub(FlaskForm):
         choices=[('0', ''), ('1', 'Primeira dose'), ('2', 'Segunda dose'),('3', 'Terceira dose'), ('4', 'Quarta dose')],
         validators=[], )
 
+#info of family composition#
     mame_mom = StringField(label=('Nome da Mãe'),
         validators=[Length(max=64)])
 
@@ -169,6 +170,35 @@ class UserSub(FlaskForm):
         choices=[('0', ''), ('1', 'Lê e escreve '), ('2', 'Ensino Fundamental completo '),('3', 'Ensino Fundamental incompleto '), ('4', 'Ensino Médio completo ')
                  , ('5', 'Ensino Médio incompleto '), ('6', 'Terceiro Grau completo'),('7', 'Terceiro Grau incompleto'), ('8', 'Pós-graduação completo'),('9', 'Pós-graduação incompleto')],
         validators=[], )
+
+    children = RadioField(label=
+                             'Tem filhos?',
+                             choices=[('1', 'Sim'), ('2', 'Não')])
+
+    many_childrens =  StringField(label=('Quantos Filhos?'),
+        validators=[Length(max=64)])
+
+    live_whith_parents = RadioField(label=
+                         'Mora com seus pais?',
+                         choices=[('1', 'Sim'), ('2', 'Não')])
+
+    lives_whith_other_family = StringField(label=('Caso não especifique'),
+                                 validators=[Length(max=64)])
+
+    many_people_live_house = StringField(label=('Quantas pessoas moram na sua casa?'),
+                                           validators=[Length(max=64)])
+
+
+
+
+
+
+
+
+
+
+
+
 
     submit = SubmitField(label=('Enviar'))
 
