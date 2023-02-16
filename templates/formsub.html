@@ -93,15 +93,35 @@
             {{ form.message_email(class="form-control") }}
         </div>
         <div class="form-group  ">
-            {{ form. scholarity_progress.label }}
-            {{ form. scholarity_progress(class="") }}
+            {{ form.scholarity_progress.label }}
+            {{ form.scholarity_progress(class="") }}
         </div>
         <div class="form-group  ">
-            {{ form.message_email.label }}
-            {{ form.message_email(class="form-control") }}
+            {{ form.school.label }}
+            {{ form.school(class="form-control") }}
+        </div>
+        <div class="form-group  ">
+            {{ form. school_term.label }}
+            {{ form. school_term(class="") }}
         </div>
         <div class="col-md col-md-offset-4">
             <h2>Informações sobre saúde</h2>
+        </div>
+         <div class="form-group  ">
+            {{ form.pwd_person.label }}
+            {{ form.pwd_person(class="") }}
+        </div>
+         <div class="form-group  ">
+            {{ form. pwd_person_affirmative.label }}
+            {{ form. pwd_person_affirmative(class="form-control") }}
+        </div>
+        <div class="form-group  ">
+            {{ form.carrier_of_chronic_disease.label }}
+            {{ form.carrier_of_chronic_disease(class="") }}
+        </div>
+         <div class="form-group  ">
+            {{ form. carrier_of_chronic_disease_affirmative.label }}
+            {{ form. carrier_of_chronic_disease_affirmative(class="form-control") }}
         </div>
         <div class="form-group  ">
             {{ form.vaccine_covid.label }}

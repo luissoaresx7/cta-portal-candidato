@@ -1,5 +1,4 @@
 from flask import Flask, render_template, redirect, url_for, request
-
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, \
     SubmitField, SelectField, DateField, RadioField
@@ -123,8 +122,27 @@ class UserSub(FlaskForm):
     scholarity_progress = RadioField(label=
                                 'Ensino Médio', choices=[('1', 'Não concluído'), ('2', 'Em andamento'),('3', 'Concluído')])
 
+    school_term = RadioField(label=
+                                     'Período escolar',
+                                     choices=[('1', 'Manhã'), ('2', 'Tarde'), ('3', 'Noturno')])
+
     school = StringField(label=('Colégio:'),
         validators=[Length(max=64)])
+#health#
+
+    pwd_person = RadioField(label=
+                             'Portador de alguma deficiência?',
+                             choices=[('1', 'Sim'), ('2', 'Não')])
+
+    pwd_person_affirmative = StringField(label=('Caso sim especifique'),
+        validators=[Length(max=64)])
+
+    carrier_of_chronic_disease = RadioField(label=
+                            'Portador de alguma doença crônica?',
+                            choices=[('1', 'Sim'), ('2', 'Não')])
+
+    carrier_of_chronic_disease_affirmative = StringField(label=('Caso sim especifique'),
+                                        validators=[Length(max=64)])
 
     vaccine_covid = SelectField(u'Vacina Covid:',
         choices=[('0', ''), ('1', 'Primeira dose'), ('2', 'Segunda dose'),('3', 'Terceira dose'), ('4', 'Quarta dose')],
