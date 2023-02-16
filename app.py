@@ -26,6 +26,8 @@ class Student(db.Model):
     birth_date = db.Column(db.DateTime(80), nullable=False)
     raca_cor_etinia = db.Column(db.Integer(), nullable=True)
     gender = db.Column(db.Integer(), nullable=True)
+    marital_status = db.Column(db.Integer(), nullable=False)
+    nacionality = db.Column(db.String(64), nullable=False)
    
 
 
@@ -68,6 +70,9 @@ class UserSub(FlaskForm):
 
     nacionality = StringField(label=('Nacionalidade:'),
         validators=[Length(max=64)])
+
+    nacionality_br = RadioField(label=
+        'Naturalizado Brasileiro?', choices=[('1', 'Sim'), ('2', 'Não')])
 
     state = StringField(label=('Estado:'),
         validators=[Length(max=64)])
@@ -115,6 +120,9 @@ class UserSub(FlaskForm):
     message_email = StringField(label=('E-mail para Recado'),
         validators=[Length(max=64)])
 
+    scholarity_progress = RadioField(label=
+                                'Ensino Médio', choices=[('1', 'Não concluído'), ('2', 'Em andamento'),('3', 'Concluído')])
+
     school = StringField(label=('Colégio:'),
         validators=[Length(max=64)])
 
@@ -155,12 +163,18 @@ def student_create():
         birth_date_str = request.form['birth_date']
         birth_date = datetime.datetime.strptime(birth_date_str, "%Y-%m-%d").date()
         raca_cor_etinia = request.form['raca_cor_etinia']
+        marital_status = request.form['marital_status']
+        nacionality = request.form[' nacionality']
+
         gender = request.form['gender']
         student = Student(complete_name=complete_name,
                           social_name=social_name,
                           birth_date=birth_date,
                           raca_cor_etinia=raca_cor_etinia,
-                          gender=gender)
+                          gender=gender,
+                          marital_status=marital_status,
+                          nacionality= nacionality)
+
         db.session.add(student)
         db.session.commit()
         return redirect(url_for('student_edit', student_id=student.id))
@@ -177,11 +191,16 @@ def student_edit(student_id):
             birth_date = datetime.datetime.strptime(birth_date_str, "%Y-%m-%d").date()
             raca_cor_etinia = request.form.get('raca_cor_etinia')
             gender = request.form.get('gender')
+            marital_status = request.form.get('marital_status')
+            nacionality = request.form.get(' nacionality')
 
             student.social_name = social_name
             student.birth_date = birth_date
             student.raca_cor_etinia = raca_cor_etinia
             student.gender = gender
+            student.marital_status = marital_status
+            student. nacionality =  nacionality
+
 
 
             db.session.add(student)
@@ -237,7 +256,8 @@ class UserLogin(FlaskForm):
 
 @app.route('/login', methods=('GET', 'POST'))
 def login():
-    return render_template('login.html',)
+    form = UserLogin
+    return render_template('login.html', form=form)
 
 
 
