@@ -27,8 +27,10 @@ class Student(db.Model):
     gender = db.Column(db.Integer(), nullable=True)
     marital_status = db.Column(db.Integer(), nullable=False)
     nacionality = db.Column(db.String(64), nullable=False)
+    city = db.Column(db.String(1), nullable=False)
     state = db.Column(db.String(64), nullable=False)
     city = db.Column(db.String(64), nullable=False)
+
 
 
 
@@ -54,17 +56,17 @@ class UserSub(FlaskForm):
         validators=[DataRequired()], )
 
     raca_cor_etinia = SelectField(u'Raça/Cor/Etinia:',
-        choices=[('0', ''), ('1', 'Amarela(o)'),('2', 'Branca(o)'), ('3', 'Cigana(o)'),
+        choices=[('', ''), ('1', 'Amarela(o)'),('2', 'Branca(o)'), ('3', 'Cigana(o)'),
                 ('4', 'Indigena'), ('5', 'parda(o)'), ('6', 'Preta(o)')],
         validators=[], )
 
     gender = SelectField(u'Gênero:',
-        choices=[('0', ''),('1', 'Masculino'), ('2', 'Feminino'), ('3', 'Trangênero'),
+        choices=[('', ''),('1', 'Masculino'), ('2', 'Feminino'), ('3', 'Trangênero'),
                 ('4', 'Não-binário')],
         validators=[], )
 
     marital_status = SelectField(u'Estado Civil:',
-        choices=[('0', ''),('1', 'Desquitado(a)'), ('2', 'Divorciado(a)'), ('3', 'Separado(a)'),
+        choices=[('', ''),('DESQUITADO', 'Desquitado(a)'), ('DESQUITADO', 'Divorciad(a)'), ('SEPARADO', 'Separado(a)'),
                 ('4', 'Solteiro(a)'),('4', 'União estavel'),('4', 'Viúvo(a)')],
         validators=[], )
 
@@ -72,7 +74,7 @@ class UserSub(FlaskForm):
         validators=[Length(max=64)])
 
     nacionality_br = RadioField(label=
-        'Naturalizado Brasileiro?', choices=[('1', 'Sim'), ('2', 'Não')])
+        'Naturalizado Brasileiro?', choices=[('S', 'Sim'), ('N', 'Não')])
 
     state = StringField(label=('Estado:'),
         validators=[Length(max=64)])
