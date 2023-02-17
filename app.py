@@ -27,7 +27,8 @@ class Student(db.Model):
     gender = db.Column(db.Integer(), nullable=True)
     marital_status = db.Column(db.Integer(), nullable=False)
     nacionality = db.Column(db.String(64), nullable=False)
-   
+    state = db.Column(db.String(64), nullable=False)
+    city = db.Column(db.String(64), nullable=False)
 
 
 
@@ -198,7 +199,9 @@ def student_create():
         birth_date = datetime.datetime.strptime(birth_date_str, "%Y-%m-%d").date()
         raca_cor_etinia = request.form['raca_cor_etinia']
         marital_status = request.form['marital_status']
-        nacionality = request.form[' nacionality']
+        nacionality = request.form['nacionality']
+        state = request.form['state']
+        city = request.form['city']
 
         gender = request.form['gender']
         student = Student(complete_name=complete_name,
@@ -207,7 +210,9 @@ def student_create():
                           raca_cor_etinia=raca_cor_etinia,
                           gender=gender,
                           marital_status=marital_status,
-                          nacionality= nacionality)
+                          nacionality=nacionality,
+                          state=state,
+                          city=city)
 
         db.session.add(student)
         db.session.commit()
@@ -226,14 +231,19 @@ def student_edit(student_id):
             raca_cor_etinia = request.form.get('raca_cor_etinia')
             gender = request.form.get('gender')
             marital_status = request.form.get('marital_status')
-            nacionality = request.form.get(' nacionality')
+            nacionality = request.form.get('nacionality')
+            state = request.form.get('state')
+            city = request.form.get('city')
 
             student.social_name = social_name
             student.birth_date = birth_date
             student.raca_cor_etinia = raca_cor_etinia
             student.gender = gender
             student.marital_status = marital_status
-            student. nacionality =  nacionality
+            student.nacionality = nacionality
+            student.state = state
+            student.city = city
+
 
 
 
