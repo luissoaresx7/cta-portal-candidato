@@ -30,6 +30,20 @@ class Student(db.Model):
     city = db.Column(db.String(1), nullable=False)
     state = db.Column(db.String(64), nullable=False)
     city = db.Column(db.String(64), nullable=False)
+    rg = db.Column(db.String(64), nullable=False)
+    shipping_date_rg = db.Column(db.DateTime(80), nullable=False)
+    shipper_rg = db.Column(db.String(64), nullable=False)
+    cpf = db.Column(db.String(64), nullable=False)
+    cnh = db.Column(db.String(64), nullable=False)
+    cep = db.Column(db.String(64), nullable=False)
+    address = db.Column(db.String(64), nullable=False)
+    house_number = db.Column(db.String(64), nullable=False)
+    complement_address = db.Column(db.String(64), nullable=False)
+    tel = db.Column(db.String(64), nullable=False)
+    tel_message = db.Column(db.String(64), nullable=False)
+    personal_email = db.Column(db.String(64), nullable=False)
+    message_email = db.Column(db.String(64), nullable=False)
+    scholarity_progress = db.Column(db.Integer(1), nullable=True)
 
 
 
@@ -56,18 +70,18 @@ class UserSub(FlaskForm):
         validators=[DataRequired()], )
 
     raca_cor_etinia = SelectField(u'Raça/Cor/Etinia:',
-        choices=[('', ''), ('1', 'Amarela(o)'),('2', 'Branca(o)'), ('3', 'Cigana(o)'),
-                ('4', 'Indigena'), ('5', 'parda(o)'), ('6', 'Preta(o)')],
+        choices=[('', ''), ('AMARELA', 'Amarela(o)'),('BRANCA', 'Branca(o)'), ('CIGANA', 'Cigana(o)'),
+                ('INDIGENA', 'Indigena'), ('PARDA', 'parda(o)'), ('PRETA', 'Preta(o)')],
         validators=[], )
 
     gender = SelectField(u'Gênero:',
-        choices=[('', ''),('1', 'Masculino'), ('2', 'Feminino'), ('3', 'Trangênero'),
-                ('4', 'Não-binário')],
+        choices=[('', ''),('MASC', 'Masculino'), ('FEMININO', 'Feminino'), ('TRANS', 'Trangênero'),
+                ('NAOBINARIO', 'Não-binário')],
         validators=[], )
 
     marital_status = SelectField(u'Estado Civil:',
         choices=[('', ''),('DESQUITADO', 'Desquitado(a)'), ('DESQUITADO', 'Divorciad(a)'), ('SEPARADO', 'Separado(a)'),
-                ('4', 'Solteiro(a)'),('4', 'União estavel'),('4', 'Viúvo(a)')],
+                ('SOLTEIRO', 'Solteiro(a)'),('UNIAOESTAVEL', 'União estavel'),('VIUVO', 'Viúvo(a)')],
         validators=[], )
 
     nacionality = StringField(label=('Nacionalidade:'),
@@ -122,15 +136,15 @@ class UserSub(FlaskForm):
     message_email = StringField(label=('E-mail para Recado'),
         validators=[Length(max=64)])
 
-    scholarity_progress = RadioField(label='Ensino Médio', choices=[('1', 'Não concluído'), ('2', 'Em andamento'),('3', 'Concluído')])
+    scholarity_progress = RadioField(label='Ensino Médio', choices=[('NCONCLUIDO', 'Não concluído'), ('EMANDAMENTO', 'Em andamento'),('CONCLUIDO', 'Concluído')])
 
-    school_term = RadioField(label='Período escolar', choices=[('1', 'Manhã'), ('2', 'Tarde'), ('3', 'Noturno')])
+    school_term = RadioField(label='Período escolar', choices=[('MANHA', 'Manhã'), ('TARDE', 'Tarde'), ('NOTURNO', 'Noturno')])
 
     school = StringField(label=('Colégio:'),
         validators=[Length(max=64)])
 #health#
 
-    pwd_person = RadioField(label='Portador de alguma deficiência?', choices=[('1', 'Sim'), ('2', 'Não')])
+    pwd_person = RadioField(label='Portador de alguma deficiência?', choices=[('S', 'Sim'), ('N', 'Não')])
 
     pwd_person_affirmative = StringField(label=('Caso sim especifique'),
         validators=[Length(max=64)])
@@ -164,12 +178,12 @@ class UserSub(FlaskForm):
     , ('5', 'Ensino Médio incompleto '), ('6', 'Terceiro Grau completo'),('7', 'Terceiro Grau incompleto'), ('8', 'Pós-graduação completo'),('9', 'Pós-graduação incompleto')],
         validators=[], )
 
-    children = RadioField(label='Tem filhos?', choices=[('1', 'Sim'), ('2', 'Não')])
+    children = RadioField(label='Tem filhos?', choices=[('S', 'Sim'), ('N', 'Não')])
 
     many_childrens =  StringField(label=('Quantos Filhos?'),
         validators=[Length(max=64)])
 
-    live_whith_parents = RadioField(label='Mora com seus pais?', choices=[('1', 'Sim'), ('2', 'Não')])
+    live_whith_parents = RadioField(label='Mora com seus pais?', choices=[('S', 'Sim'), ('N', 'Não')])
 
     lives_whith_other_family = StringField(label=('Caso não especifique'),
         validators=[Length(max=64)])
@@ -180,7 +194,7 @@ class UserSub(FlaskForm):
     member_family_name = StringField(label=('Nome'),
         validators=[Length(max=64)])
 
-    degree_of_kinship = SelectField(u'Grau de parentesco:', choices=[('0', ''), ('1', 'Mãe/pai'), ('2', 'irmão/irmã'),('3', 'Avô/Avó'),('4', 'Tia/Tio')],
+    degree_of_kinship = SelectField(u'Grau de parentesco:', choices=[('', ''), ('MAEPAI', 'Mãe/pai'), ('IRMAOIRMA', 'irmão/irmã'),('AVOVO', 'Avô/Avó'),('TIATIO', 'Tia/Tio')],
         validators=[], )
 
     age_member_family = StringField(label=('Idade'),
@@ -204,6 +218,19 @@ def student_create():
         nacionality = request.form['nacionality']
         state = request.form['state']
         city = request.form['city']
+        rg = request.form['rg']
+        shipping_date_rg = request.form['shipping_date_rg']
+        cpf = request.form['cpf']
+        cnh = request.form['cnh']
+        cep = request.form['cep']
+        address = request.form['address']
+        house_number = request.form['house_number']
+        complement_address = request.form['complement_address']
+        tel = request.form['tel']
+        tel_message = request.form['tel_message']
+        personal_email = request.form['personal_email']
+        message_email = request.form['message_email']
+
 
         gender = request.form['gender']
         student = Student(complete_name=complete_name,
@@ -214,7 +241,23 @@ def student_create():
                           marital_status=marital_status,
                           nacionality=nacionality,
                           state=state,
-                          city=city)
+                          city=city,
+                          rg=rg,
+                          shipping_date_rg=shipping_date_rg,
+                          shipper_rg=shipper_rg,
+                          cpf=cpf,
+                          cnh=cnh,
+                          cep=cep,
+                          address=address,
+                          house_number=house_number,
+                          complement_address=complement_address,
+                          tel=tel,
+                          tel_message=tel_message,
+                          personal_email=personal_email,
+                          message_email=message_email,
+
+
+                          )
 
         db.session.add(student)
         db.session.commit()
@@ -236,6 +279,18 @@ def student_edit(student_id):
             nacionality = request.form.get('nacionality')
             state = request.form.get('state')
             city = request.form.get('city')
+            rg = request.form.get('rg')
+            shipping_date_rg = request.form.get('shipping_date_rg')
+            shipper_rg = request.form.get('shipper_rg')
+            cpf = request.form.get('cpf')
+            cnh = request.form.get('cnh')
+            cep = request.form.get('cep')
+            address = request.form.get('address')
+            house_number = request.form.get('house_number')
+            complement_address = request.form.get('complement_address')
+            tel = request.form.get('tel')
+            tel_message = tel_message
+            personal_email = personal_email
 
             student.social_name = social_name
             student.birth_date = birth_date
@@ -245,7 +300,18 @@ def student_edit(student_id):
             student.nacionality = nacionality
             student.state = state
             student.city = city
-
+            student.rg = rg
+            student.shipping_date_rg = shipping_date_rg
+            student.shipper_rg = shipper_rg
+            student.cpf = cpf
+            student.cnh = cnh
+            student.cep = cep
+            student.address = address
+            student.house_number = house_number
+            student.complement_address = complement_address
+            student.tel = tel
+            student.tel_message = tel_message
+            student.personal_email = personal_email
 
 
 
@@ -302,7 +368,7 @@ class UserLogin(FlaskForm):
 
 @app.route('/login', methods=('GET', 'POST'))
 def login():
-    form = UserLogin
+    form = UserLogin()
     return render_template('login.html', form=form)
 
 
