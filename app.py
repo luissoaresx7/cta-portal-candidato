@@ -43,7 +43,29 @@ class Student(db.Model):
     tel_message = db.Column(db.String(64), nullable=False)
     personal_email = db.Column(db.String(64), nullable=False)
     message_email = db.Column(db.String(64), nullable=False)
-    scholarity_progress = db.Column(db.Integer(1), nullable=True)
+    scholarity_progress = db.Column(db.Integer(1), nullable=False)
+    school_term = db.Column(db.Integer(1), nullable=False)
+    school = db.Column(db.String(64), nullable=False)
+    pwd_person = db.Column(db.Integer(1), nullable=False)
+    pwd_person_affirmative = db.Column(db.String(64), nullable=False)
+    carrier_of_chronic_disease = db.Column(db.Integer(1), nullable=False)
+    carrier_of_chronic_disease_affirmative = db.Column(db.String(64), nullable=False)
+    vaccine_covid = db.Column(db.Integer(1), nullable=False)
+    mame_mom = db.Column(db.String(64), nullable=False)
+    profession_mom = db.Column(db.String(64), nullable=False)
+    scholarity_mom = db.Column(db.Integer(1), nullable=False)
+    mame_dad = db.Column(db.String(64), nullable=False)
+    profession_dad = db.Column(db.String(64), nullable=False)
+    scholarity_dad = db.Column(db.Integer(1), nullable=False)
+    children = db.Column(db.Integer(1), nullable=False)
+    many_childrens = db.Column(db.String(64), nullable=False)
+    live_whith_parents = db.Column(db.Integer(1), nullable=False)
+    lives_whith_other_family = db.Column(db.String(64), nullable=False)
+    many_people_live_house = db.Column(db.String(64), nullable=False)
+    member_family_name = db.Column(db.String(64), nullable=False)
+    degree_of_kinship = db.Column(db.Integer(1), nullable=False)
+    age_member_family = db.Column(db.String(64), nullable=False)
+
 
 
 
@@ -230,6 +252,29 @@ def student_create():
         tel_message = request.form['tel_message']
         personal_email = request.form['personal_email']
         message_email = request.form['message_email']
+        school_term = request.form['school_term']
+        school = request.form['school']
+        pwd_person = request.form['pwd_person']
+        pwd_person_affirmative = request.form['pwd_person_affirmative']
+        carrier_of_chronic_disease = request.form['carrier_of_chronic_disease']
+        carrier_of_chronic_disease_affirmative = request.form['carrier_of_chronic_disease_affirmative']
+        vacine_covid = request.form['vacine_covid']
+        mame_mom = request.form['mame_mom']
+        profession_mom = request.form['profession_mom']
+        scholarity_mom = request.form['scholarity_mom']
+        mame_dad = request.form['mame_dad']
+        profession_dad = request.form['profession_dad']
+        scholarity_dad = request.form['scholarity_dad']
+        children = request.form['children']
+        many_children = request.form['many_children']
+        live_with_parents = request.form['live_with_parents']
+        lives_whith_other_family = request.form['lives_whith_other_family']
+        many_people_live_house = request.form['many_people_live_house']
+        mammember_family_namee_mom = request.form['member_family_name']
+        degree_of_kinship = request.form['degree_of_kinship']
+        age_member_family = request.form['age_member_family']
+
+
 
 
         gender = request.form['gender']
@@ -255,6 +300,29 @@ def student_create():
                           tel_message=tel_message,
                           personal_email=personal_email,
                           message_email=message_email,
+                          school_term=school_term,
+                          school=school,
+                          pwd_person=pwd_person,
+                          pwd_person_affirmative=pwd_person_affirmative,
+                          carrier_of_chronic_disease=carrier_of_chronic_disease,
+                          carrier_of_chronic_disease_affirmative=carrier_of_chronic_disease_affirmative,
+                          vacine_covid=vacine_covid,
+                          mame_mom=mame_mom,
+                          profession_mom=profession_mom,
+                          scholarity_mom=scholarity_mom,
+                          name_dad=name_dad,
+                          profession_dad=profession_dad,
+                          scholarity_dad=scholarity_dad,
+                          children=children,
+                          many_children=many_children,
+                          live_with_parents=live_with_parents,
+                          lives_whith_other_family=lives_whith_other_family,
+                          many_people_live_house=many_people_live_house,
+                          member_family_name=member_family_name,
+                          degree_of_kinship=degree_of_kinship,
+                          age_member_family=age_member_family
+
+
 
 
                           )
@@ -289,8 +357,30 @@ def student_edit(student_id):
             house_number = request.form.get('house_number')
             complement_address = request.form.get('complement_address')
             tel = request.form.get('tel')
-            tel_message = tel_message
-            personal_email = personal_email
+            tel_message = request.form.get('tel_message')
+            personal_email = request.form.get('personal_email')
+            school_term = request.form.get('school_term')
+            school = request.form.get('school')
+            pwd_person = request.form.get('pwd_person')
+            pwd_person_affirmative = request.form.get('pwd_person_affirmative')
+            carrier_of_chronic_disease = request.form.get('carrier_of_chronic_disease')
+            carrier_of_chronic_disease_affirmative = request.form.get('carrier_of_chronic_disease_affirmative')
+            vacine_covid = request.form.get('vacine_covid')
+            mame_mom = request.form.get('mame_mom')
+            profession_mom = request.form.get('profession_mom')
+            scholarity_mom = request.form.get('scholarity_mom')
+            mame_dad = request.form.get('mame_dad')
+            profession_dad = request.form.get('profession_dad')
+            scholarity_dad = request.form.get('scholarity_dad')
+            children = request.form.get('children')
+            many_children = request.form.get('many_children')
+            live_with_parents = request.form.get('live_with_parents')
+            lives_whith_other_family = request.form.get('lives_whith_other_family')
+            many_people_live_house = request.form.get('many_people_live_house')
+            member_family_name = request.form.get('member_family_name')
+            degree_of_kinship = request.form.get('degree_of_kinship')
+            age_member_family = request.form.get('age_member_family')
+
 
             student.social_name = social_name
             student.birth_date = birth_date
@@ -312,6 +402,30 @@ def student_edit(student_id):
             student.tel = tel
             student.tel_message = tel_message
             student.personal_email = personal_email
+            student.school_term = school_term
+            student.school = school
+            student.pwd_person = pwd_person
+            student.pwd_person_affirmative = pwd_person_affirmative
+            student.carrier_of_chronic_disease = carrier_of_chronic_disease
+            student.carrier_of_chronic_disease_affirmative = carrier_of_chronic_disease_affirmative
+            student.vacine_covid = vacine_covid
+            student.mame_mom = mame_mom
+            student.profession_mom = profession_mom
+            student.scholarity_mom = scholarity_mom
+            student.mame_dad = mame_dad
+            student.profession_dad = profession_dad
+            student.scholarity_dad = scholarity_dad
+            student.children = children
+            student.many_children = many_children
+            student.live_with_parents = live_with_parents
+            student.lives_whith_other_family = lives_whith_other_family
+            student.many_people_live_house = many_people_live_house
+            student.member_family_name = member_family_name
+            student.degree_of_kinship = degree_of_kinship
+            student.age_member_family = age_member_family
+
+
+
 
 
 
