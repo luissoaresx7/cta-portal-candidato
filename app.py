@@ -27,7 +27,7 @@ class Student(db.Model):
     gender = db.Column(db.Integer(), nullable=True)
     marital_status = db.Column(db.Integer(), nullable=False)
     nacionality = db.Column(db.String(64), nullable=False)
-    city = db.Column(db.String(1), nullable=False)
+    city = db.Column(db.String(64), nullable=False)
     state = db.Column(db.String(64), nullable=False)
     city = db.Column(db.String(64), nullable=False)
     rg = db.Column(db.String(64), nullable=False)
@@ -43,27 +43,27 @@ class Student(db.Model):
     tel_message = db.Column(db.String(64), nullable=False)
     personal_email = db.Column(db.String(64), nullable=False)
     message_email = db.Column(db.String(64), nullable=False)
-    scholarity_progress = db.Column(db.Integer(1), nullable=False)
-    school_term = db.Column(db.Integer(1), nullable=False)
+    scholarity_progress = db.Column(db.Integer(), nullable=False)
+    school_term = db.Column(db.Integer(), nullable=False)
     school = db.Column(db.String(64), nullable=False)
-    pwd_person = db.Column(db.Integer(1), nullable=False)
+    pwd_person = db.Column(db.Integer(), nullable=False)
     pwd_person_affirmative = db.Column(db.String(64), nullable=False)
-    carrier_of_chronic_disease = db.Column(db.Integer(1), nullable=False)
+    carrier_of_chronic_disease = db.Column(db.Integer(), nullable=False)
     carrier_of_chronic_disease_affirmative = db.Column(db.String(64), nullable=False)
-    vaccine_covid = db.Column(db.Integer(1), nullable=False)
+    vaccine_covid = db.Column(db.Integer(), nullable=False)
     mame_mom = db.Column(db.String(64), nullable=False)
     profession_mom = db.Column(db.String(64), nullable=False)
-    scholarity_mom = db.Column(db.Integer(1), nullable=False)
+    scholarity_mom = db.Column(db.Integer(), nullable=False)
     mame_dad = db.Column(db.String(64), nullable=False)
     profession_dad = db.Column(db.String(64), nullable=False)
-    scholarity_dad = db.Column(db.Integer(1), nullable=False)
-    children = db.Column(db.Integer(1), nullable=False)
+    scholarity_dad = db.Column(db.Integer(), nullable=False)
+    children = db.Column(db.Integer(), nullable=False)
     many_childrens = db.Column(db.String(64), nullable=False)
-    live_whith_parents = db.Column(db.Integer(1), nullable=False)
+    live_whith_parents = db.Column(db.Integer(), nullable=False)
     lives_whith_other_family = db.Column(db.String(64), nullable=False)
     many_people_live_house = db.Column(db.String(64), nullable=False)
     member_family_name = db.Column(db.String(64), nullable=False)
-    degree_of_kinship = db.Column(db.Integer(1), nullable=False)
+    degree_of_kinship = db.Column(db.Integer(), nullable=False)
     age_member_family = db.Column(db.String(64), nullable=False)
 
 
@@ -102,7 +102,7 @@ class UserSub(FlaskForm):
         validators=[], )
 
     marital_status = SelectField(u'Estado Civil:',
-        choices=[('', ''),('DESQUITADO', 'Desquitado(a)'), ('DESQUITADO', 'Divorciad(a)'), ('SEPARADO', 'Separado(a)'),
+        choices=[('', ''),('DESQUITADO', 'Desquitado(a)'), ('DESQUITADO', 'Divorciado(a)'), ('SEPARADO', 'Separado(a)'),
                 ('SOLTEIRO', 'Solteiro(a)'),('UNIAOESTAVEL', 'União estavel'),('VIUVO', 'Viúvo(a)')],
         validators=[], )
 
@@ -171,12 +171,12 @@ class UserSub(FlaskForm):
     pwd_person_affirmative = StringField(label=('Caso sim especifique'),
         validators=[Length(max=64)])
 
-    carrier_of_chronic_disease = RadioField(label='Portador de alguma doença crônica?', choices=[('1', 'Sim'), ('2', 'Não')])
+    carrier_of_chronic_disease = RadioField(label='Portador de alguma doença crônica?', choices=[('S', 'Sim'), ('S', 'Não')])
 
     carrier_of_chronic_disease_affirmative = StringField(label=('Caso sim especifique'),
         validators=[Length(max=64)])
 
-    vaccine_covid = SelectField(u'Vacina Covid:', choices=[('0', ''), ('1', 'Primeira dose'), ('2', 'Segunda dose'),('3', 'Terceira dose'), ('4', 'Quarta dose')],
+    vaccine_covid = SelectField(u'Vacina Covid:', choices=[('', ''), ('PRIMEIRADOSE', 'Primeira dose'), ('SEGUNDADOSE', 'Segunda dose'),('TERCEIRADOSE', 'Terceira dose'), ('QUARTADOSE', 'Quarta dose')],
         validators=[], )
 
 #info of family composition#
@@ -186,8 +186,8 @@ class UserSub(FlaskForm):
     profession_mom = StringField(label=('Profissão da Mãe'),
         validators=[Length(max=64)])
 
-    scholarity_mom = SelectField(u'Escolaridade da Mãe:', choices=[('0', ''), ('1', 'Lê e escreve '), ('2', 'Ensino Fundamental completo '),('3', 'Ensino Fundamental incompleto '), ('4', 'Ensino Médio completo ')
-    , ('5', 'Ensino Médio incompleto '), ('6', 'Terceiro Grau completo'),('7', 'Terceiro Grau incompleto'), ('8', 'Pós-graduação completo'),('9', 'Pós-graduação incompleto')],
+    scholarity_mom = SelectField(u'Escolaridade da Mãe:', choices=[('', ''), ('LE_ESCREVE', 'Lê e escreve '), ('LE_ESCREVE', 'Ensino Fundamental completo '),('LE_ESCREVE', 'Ensino Fundamental incompleto '), ('EM_MEDIOCOMPLETO', 'Ensino Médio completo ')
+    , ('EM_MEDIO_INCOMPLETO', 'Ensino Médio incompleto '), ('TERCEIROGRAU_COMPLETO', 'Terceiro Grau completo'),('TERCEIROGRAU_INCOMPLETO', 'Terceiro Grau incompleto'), ('POSGRADUAÇAO_COMPLETA', 'Pós-graduação completo'),('POSGRADUAÇAO_INCOMPLETA', 'Pós-graduação incompleto')],
         validators=[], )
 
     mame_dad = StringField(label=('Nome do Pai'),
@@ -196,8 +196,8 @@ class UserSub(FlaskForm):
     profession_dad = StringField(label=('Profissão do Pai'),
         validators=[Length(max=64)])
 
-    scholarity_dad = SelectField(u'Escolaridade do Pai:',choices=[('0', ''), ('1', 'Lê e escreve '), ('2', 'Ensino Fundamental completo '),('3', 'Ensino Fundamental incompleto '), ('4', 'Ensino Médio completo ')
-    , ('5', 'Ensino Médio incompleto '), ('6', 'Terceiro Grau completo'),('7', 'Terceiro Grau incompleto'), ('8', 'Pós-graduação completo'),('9', 'Pós-graduação incompleto')],
+    scholarity_dad = SelectField(u'Escolaridade do Pai:',choices=[('', ''), ('LE_ESCREVE', 'Lê e escreve '), ('LE_ESCREVE', 'Ensino Fundamental completo '),('LE_ESCREVE', 'Ensino Fundamental incompleto '), ('EM_MEDIOCOMPLETO', 'Ensino Médio completo ')
+    , ('EM_MEDIO_INCOMPLETO', 'Ensino Médio incompleto '), ('TERCEIROGRAU_COMPLETO', 'Terceiro Grau completo'),('TERCEIROGRAU_INCOMPLETO', 'Terceiro Grau incompleto'), ('POSGRADUAÇAO_COMPLETA', 'Pós-graduação completo'),('POSGRADUAÇAO_INCOMPLETA', 'Pós-graduação incompleto')],
         validators=[], )
 
     children = RadioField(label='Tem filhos?', choices=[('S', 'Sim'), ('N', 'Não')])
@@ -242,6 +242,7 @@ def student_create():
         city = request.form['city']
         rg = request.form['rg']
         shipping_date_rg = request.form['shipping_date_rg']
+        shipper_rg = request.form['shipper_rg']
         cpf = request.form['cpf']
         cnh = request.form['cnh']
         cep = request.form['cep']
@@ -262,7 +263,7 @@ def student_create():
         mame_mom = request.form['mame_mom']
         profession_mom = request.form['profession_mom']
         scholarity_mom = request.form['scholarity_mom']
-        mame_dad = request.form['mame_dad']
+        name_dad = request.form['mame_dad']
         profession_dad = request.form['profession_dad']
         scholarity_dad = request.form['scholarity_dad']
         children = request.form['children']
@@ -270,7 +271,7 @@ def student_create():
         live_with_parents = request.form['live_with_parents']
         lives_whith_other_family = request.form['lives_whith_other_family']
         many_people_live_house = request.form['many_people_live_house']
-        mammember_family_namee_mom = request.form['member_family_name']
+        member_family_name = request.form['member_family_name']
         degree_of_kinship = request.form['degree_of_kinship']
         age_member_family = request.form['age_member_family']
 
@@ -321,10 +322,6 @@ def student_create():
                           member_family_name=member_family_name,
                           degree_of_kinship=degree_of_kinship,
                           age_member_family=age_member_family
-
-
-
-
                           )
 
         db.session.add(student)
