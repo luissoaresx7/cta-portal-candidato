@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/forms.css')}}">
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e00014;">
   <a  class="logo" href="{{url_for('index')}}"><img class="logo" src="{{url_for('static', filename='DUFRY_lOGO.png')}}"></a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -19,8 +20,8 @@
     <form class="container col-6 col-md-3" method="POST" action="">
         {{ form.csrf_token() }}
         <div class="form-group">
-            {{ form.username.label }}
-            {{ form.username(class="form-control") }}
+            {{ form.username.label}}
+            {{ form.username(class="form-control")}}
         </div>
         <div class="form-group">
             {{ form.email.label }}

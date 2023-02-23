@@ -18,7 +18,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     complete_name = db.Column(db.String(64), nullable=False)
