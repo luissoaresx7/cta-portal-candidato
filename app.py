@@ -18,6 +18,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     complete_name = db.Column(db.String(64), nullable=False)
@@ -65,12 +66,6 @@ class Student(db.Model):
     member_family_name = db.Column(db.String(64), nullable=False)
     degree_of_kinship = db.Column(db.Integer(), nullable=False)
     age_member_family = db.Column(db.String(64), nullable=False)
-
-
-
-
-
-
 
     def __repr__(self):
         return f'<Student {self.complete_name}>'
@@ -436,6 +431,7 @@ def student_edit(student_id):
     form = UserSub(obj=student)
     return render_template('formsub_edit.html', form=form)
 
+#REGISSTER#
 class CreateUserForm(FlaskForm):
     class Meta:
         locales = ['pt_BR', 'pt']
@@ -459,6 +455,15 @@ class CreateUserForm(FlaskForm):
 
     submit = SubmitField(label=('Enviar'))
 
+@app.route('/user/register', methods=('GET', 'POST'))
+def register():
+    form = CreateUserForm()
+    if form.validate_on_submit():
+        return redirect(url_for('student_create'))
+    return render_template('register.html', form=form)
+
+
+#LOGIN#
 class UserLogin(FlaskForm):
     class Meta:
         locales = ['pt_BR', 'pt']
@@ -476,7 +481,6 @@ class UserLogin(FlaskForm):
 
     submit = SubmitField(label=('Enviar'))
 
-
 @app.route('/login', methods=('GET', 'POST'))
 def login():
     form = UserLogin()
@@ -488,13 +492,7 @@ def login():
 
 
 
-@app.route('/user/register', methods=('GET', 'POST'))
-def register():
-    form = CreateUserForm()
-    if form.validate_on_submit():
-         return redirect(url_for('student_create'))
-    return render_template('register.html', form=form)
-
+#INDEX#
 @app.route('/', methods=('GET', 'POST'))
 def index():
     return render_template('index.html',)
