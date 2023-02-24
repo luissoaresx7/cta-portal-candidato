@@ -230,8 +230,8 @@
                 <sstrong>{{ form[field].label }}</sstrong>: {{ ', '.join(errors) }}
             </div>
         {% endfor %}
-        <div class="form-group">
-            {{ form.submit(class="btn btn-primary")}}
+        <div id="formSubmit" class="form-group">
+            {{ form.submit(class="btn bg-white text-black -btn-sm")}}
         </div>
     </form>
 </div>
