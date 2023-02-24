@@ -1,0 +1,36 @@
+body{
+    margin: 0;
+    padding: 0;
+
+}
+
+.img{
+   background-image: url("/static/backgroundindex.png");
+   height: 800px;
+   width: 890px;
+   background-position: left top;
+   margin left: 200px;
+   background-repeat: no-repeat;
+   background-size: contain;
+   background-attachment: scroll;
+
+}
+
+#botaoLogin{
+    box-shadow: 0 0 0 0.05rem #000000;
+
+}
+#botaoLogin:hover {
+    border-color: #000000;
+
+}
+
+
+#inputEmail, #inputSenha{
+    border-color: 	#000000;
+}
+
+#inputEmail:focus, #inputSenha:focus {
+    border-color: 	#000000;
+    box-shadow: 0 0 0 0.1rem #ffffff;
+}

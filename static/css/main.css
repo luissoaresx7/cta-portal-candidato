@@ -1,0 +1,25 @@
+body{
+    margin: 0;
+    padding: 0;
+
+}
+
+.logo {
+    width: 39vh;
+    height: 13vh;
+    transform: scale(0.9);
+
+}
+
+
+.logo:hover {
+    transform: scale(1);
+
+}
+
+.main{
+    display: flex;
+    flex-direction: row;
+
+}
+

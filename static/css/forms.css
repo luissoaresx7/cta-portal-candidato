@@ -1,0 +1,23 @@
+body{
+   margin: 0;
+   padding: 0;
+   background-color: #D3D3D3
+
+}
+.form-control{
+   border-color: #211B15;
+
+.form-group:focus{
+   border-color: #00000;
+   box-shadow: 0 0 0 0.25rem #90025;
+
+
+}
+.form-groupl:hover{
+   border-color: #024255;
+
+}
+
+#formSubmit{
+    box-shadow: 0 0 0 0.010rem #000000;
+}
