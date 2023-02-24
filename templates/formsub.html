@@ -85,6 +85,14 @@
             {{ form.cep(class="form-control") }}
         </div>
          <div class="form-group  ">
+            {{ form.address.label }}
+            {{ form.address(class="form-control") }}
+        </div>
+         <div class="form-group  ">
+            {{ form.house_number.label }}
+            {{ form.house_number(class="form-control") }}
+        </div>
+         <div class="form-group  ">
             {{ form.complement_address.label }}
             {{ form.complement_address(class="form-control") }}
         </div>
@@ -113,8 +121,8 @@
             {{ form.school(class="form-control") }}
         </div>
         <div class="form-group  ">
-            {{ form. school_term.label }}
-            {{ form. school_term(class="") }}
+            {{ form.school_term.label }}
+            {{ form.school_term(class="") }}
         </div>
         <div class="col-md col-md-offset-4">
             <h2>Informações sobre saúde</h2>

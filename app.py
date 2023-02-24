@@ -259,7 +259,9 @@ def student_create():
         state = request.form['state']
         city = request.form['city']
         rg = request.form['rg']
-        shipping_date_rg = request.form['shipping_date_rg']
+        shipping_date_rg_str = request.form['shipping_date_rg']
+        print(shipping_date_rg_str)
+        shipping_date_rg = datetime.strptime(shipping_date_rg_str, "%Y-%m-%d").date() if shipping_date_rg_str != '' else None
         shipper_rg = request.form['shipper_rg']
         cpf = request.form['cpf']
         cnh = request.form['cnh']
@@ -271,30 +273,30 @@ def student_create():
         tel_message = request.form['tel_message']
         personal_email = request.form['personal_email']
         message_email = request.form['message_email']
-        school_term = request.form['school_term']
-        school = request.form['school']
-        pwd_person = request.form['pwd_person']
-        pwd_person_affirmative = request.form['pwd_person_affirmative']
-        carrier_of_chronic_disease = request.form['carrier_of_chronic_disease']
-        carrier_of_chronic_disease_affirmative = request.form['carrier_of_chronic_disease_affirmative']
-        vacine_covid = request.form['vacine_covid']
-        mame_mom = request.form['mame_mom']
-        profession_mom = request.form['profession_mom']
-        scholarity_mom = request.form['scholarity_mom']
-        name_dad = request.form['mame_dad']
-        profession_dad = request.form['profession_dad']
-        scholarity_dad = request.form['scholarity_dad']
-        children = request.form['children']
-        many_children = request.form['many_children']
-        live_with_parents = request.form['live_with_parents']
-        lives_whith_other_family = request.form['lives_whith_other_family']
-        many_people_live_house = request.form['many_people_live_house']
-        member_family_name = request.form['member_family_name']
-        degree_of_kinship = request.form['degree_of_kinship']
-        age_member_family = request.form['age_member_family']
-
-
-
+        #school_term = request.form['school_term']
+        try:
+            school = request.form['school']
+            #pwd_person = request.form['pwd_person']
+            pwd_person_affirmative = request.form['pwd_person_affirmative']
+            #carrier_of_chronic_disease = request.form['carrier_of_chronic_disease']
+            carrier_of_chronic_disease_affirmative = request.form['carrier_of_chronic_disease_affirmative']
+            #vacine_covid = request.form['vacine_covid']
+            mame_mom = request.form['mame_mom']
+            profession_mom = request.form['profession_mom']
+            scholarity_mom = request.form['scholarity_mom']
+            #name_dad = request.form['mame_dad']
+            profession_dad = request.form['profession_dad']
+            scholarity_dad = request.form['scholarity_dad']
+            #children = request.form['children']
+            #many_children = request.form['many_children']
+            #live_with_parents = request.form['live_with_parents']
+            lives_whith_other_family = request.form['lives_whith_other_family']
+            many_people_live_house = request.form['many_people_live_house']
+            member_family_name = request.form['member_family_name']
+            degree_of_kinship = request.form['degree_of_kinship']
+            age_member_family = request.form['age_member_family']
+        except Exception as e:
+            print(e)
 
         gender = request.form['gender']
         student = Student(complete_name=complete_name,
@@ -319,31 +321,32 @@ def student_create():
                           tel_message=tel_message,
                           personal_email=personal_email,
                           message_email=message_email,
-                          school_term=school_term,
+                          #school_term=school_term,
                           school=school,
-                          pwd_person=pwd_person,
+                          #pwd_person=pwd_person,
                           pwd_person_affirmative=pwd_person_affirmative,
-                          carrier_of_chronic_disease=carrier_of_chronic_disease,
+                          #carrier_of_chronic_disease=carrier_of_chronic_disease,
                           carrier_of_chronic_disease_affirmative=carrier_of_chronic_disease_affirmative,
-                          vacine_covid=vacine_covid,
+                          #vacine_covid=vacine_covid,
                           mame_mom=mame_mom,
                           profession_mom=profession_mom,
                           scholarity_mom=scholarity_mom,
-                          name_dad=name_dad,
+                          #name_dad=name_dad,
                           profession_dad=profession_dad,
                           scholarity_dad=scholarity_dad,
-                          children=children,
-                          many_children=many_children,
-                          live_with_parents=live_with_parents,
+                          #hildren=children,
+                          #many_children=many_children,
+                          #live_with_parents=live_with_parents,
                           lives_whith_other_family=lives_whith_other_family,
                           many_people_live_house=many_people_live_house,
                           member_family_name=member_family_name,
                           degree_of_kinship=degree_of_kinship,
                           age_member_family=age_member_family
                           )
-
+        print("test3")
         db.session.add(student)
         db.session.commit()
+        print("test4")
         return redirect(url_for('student_edit', student_id=student.id))
     return render_template('formsub.html', form=form)
 
