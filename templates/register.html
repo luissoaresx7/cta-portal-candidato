@@ -19,6 +19,7 @@
 <div>
     <form class="container col-6 col-md-3" method="POST" action="">
         {{ form.csrf_token() }}
+        {{ form.hidden_tag() }}
         <div class="form-group">
             {{ form.username.label}}
             {{ form.username(class="form-control")}}

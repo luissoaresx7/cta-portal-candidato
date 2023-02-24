@@ -31,3 +31,4 @@ flask --app app run
 Referências
 
 - SQLAlchemy: https://www.digitalocean.com/community/tutorials/how-to-use-flask-sqlalchemy-to-interact-with-databases-in-a-flask-application
+- User Login/Logout/Registration: https://betterprogramming.pub/a-detailed-guide-to-user-registration-login-and-logout-in-flask-e86535665c07
