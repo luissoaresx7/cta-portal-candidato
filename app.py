@@ -4,7 +4,7 @@ from wtforms import StringField, PasswordField, BooleanField, \
     SubmitField, SelectField, DateField, RadioField
 from wtforms.validators import ValidationError, DataRequired, \
     Email, EqualTo, Length
-import os, datetime
+import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user
 from datetime import datetime
@@ -252,7 +252,7 @@ def student_create():
         complete_name = request.form['complete_name']
         social_name = request.form['social_name']
         birth_date_str = request.form['birth_date']
-        birth_date = datetime.datetime.strptime(birth_date_str, "%Y-%m-%d").date()
+        birth_date = datetime.strptime(birth_date_str, "%Y-%m-%d").date()
         raca_cor_etinia = request.form['raca_cor_etinia']
         marital_status = request.form['marital_status']
         nacionality = request.form['nacionality']
@@ -355,7 +355,7 @@ def student_edit(student_id):
         try:
             social_name = request.form.get('social_name')
             birth_date_str = request.form.get('birth_date')
-            birth_date = datetime.datetime.strptime(birth_date_str, "%Y-%m-%d").date()
+            birth_date = datetime.strptime(birth_date_str, "%Y-%m-%d").date()
             raca_cor_etinia = request.form.get('raca_cor_etinia')
             gender = request.form.get('gender')
             marital_status = request.form.get('marital_status')
