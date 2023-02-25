@@ -1,6 +1,7 @@
 body{
     margin: 0;
     padding: 0;
+    background-color: #D0D8DD;
 
 }
 
@@ -11,15 +12,49 @@ body{
 
 }
 
-
 .logo:hover {
     transform: scale(1);
 
 }
 
-.main{
+
+#chamada{
+    font-size: 18px;
+    font-weight: 200;
+    font-style: oblique;
+    padding: 1px;
+    margin-left: 30px;
+}
+
+#img{
+   height: 500px;
+   width: 900px;
+   padding: 1px;
+   padding-left: 200px;
+
+
+
+}
+
+.nav-link{
+    color: #000000
+    transform: scale(1);
+
+}
+
+
+.nav-link:hover{
+    color: #ffffff;
+    transform: scale(1.2);
+    text-decoration: underline;
+
+}
+
+main{
     display: flex;
     flex-direction: row;
+    margin-top: 40px;
+
 
 }
 

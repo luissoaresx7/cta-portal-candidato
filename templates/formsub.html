@@ -1,19 +1,6 @@
 {% extends "base.html" %}
-{% block content %}
 <link rel="stylesheet" href="{{url_for('static', filename='css/forms.css')}}">
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e00014;">
-  <a  class="logo" href="{{url_for('index')}}"><img class="logo" src="{{url_for('static', filename='DUFRY_lOGO.png')}}"></a>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{{url_for('register')}}">Cadastre-se<span class="sr-only"></span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{url_for('login')}}">Login</a>
-        </li>
-      </ul>
-  </div>
-</nav>
+{% block head %}
 
 <div class="container col-6 col-md-3">
     <h2>Registro de Aluno</h2>
@@ -85,14 +72,6 @@
             {{ form.cep(class="form-control") }}
         </div>
          <div class="form-group  ">
-            {{ form.address.label }}
-            {{ form.address(class="form-control") }}
-        </div>
-         <div class="form-group  ">
-            {{ form.house_number.label }}
-            {{ form.house_number(class="form-control") }}
-        </div>
-         <div class="form-group  ">
             {{ form.complement_address.label }}
             {{ form.complement_address(class="form-control") }}
         </div>
@@ -121,8 +100,8 @@
             {{ form.school(class="form-control") }}
         </div>
         <div class="form-group  ">
-            {{ form.school_term.label }}
-            {{ form.school_term(class="") }}
+            {{ form. school_term.label }}
+            {{ form. school_term(class="") }}
         </div>
         <div class="col-md col-md-offset-4">
             <h2>Informações sobre saúde</h2>

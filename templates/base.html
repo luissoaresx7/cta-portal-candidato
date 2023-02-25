@@ -1,14 +1,36 @@
 <!doctype html>
 <html>
 <head>
+
 <title>Portal CTA</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
-{% block head %}
-    {% endblock %}
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e00014;">
+  <a  class="logo " href="{{url_for('index')}}"><img class=logo src="{{url_for('static', filename='DUFRY_Logo.png')}}"></a>
+
+
+  {% if current_user.is_anonymous %}
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{{url_for('register')}}">Cadastre-se<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('login')}}">Login</a>
+        </li>
+      </ul>
+  </div>
+  {% else %}
+    <p>Bem-vindo {{current_user.username}}</p>
+    <a href="{{ url_for('logout') }}">Sair</a>
+  {% endif %}
+</nav>
+
+<div class="index">
+
 </head>
-
-
+ {% block head %}
+ {% endblock %}
 <body>
     {% block content %}
     {% endblock %}

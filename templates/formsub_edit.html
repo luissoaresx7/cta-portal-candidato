@@ -1,19 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 <link rel="stylesheet" href="{{url_for('static', filename='css/forms.css')}}">
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e00014;">
-  <a  class="logo" href="{{url_for('index')}}"><img class="logo" src="{{url_for('static', filename='DUFRY_Logo.png')}}"></a>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{{url_for('register')}}">Cadastre-se<span class="sr-only"></span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{url_for('login')}}">Login</a>
-        </li>
-      </ul>
-  </div>
-</nav>
+
+
 <div class="container col-6 col-md-3">
     <h2>{{ form.complete_name.data }}</h2>
 </div>
