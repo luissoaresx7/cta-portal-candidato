@@ -8,16 +8,17 @@ body{
    border-color: #211B15;
 
 .form-group:focus{
-   border-color: #00000;
-   box-shadow: 0 0 0 0.25rem #90025;
+   border-color: #54a1c1;
+   box-shadow: 0 0 0 1rem #54a1c1;
 
 
 }
-.form-groupl:hover{
-   border-color: #024255;
+.form-group:hover{
+   border-color: #54a1c1;
 
 }
 
 #formSubmit{
     box-shadow: 0 0 0 0.010rem #000000;
+    padding-top: 20px;
 }

@@ -1,7 +1,6 @@
-{% extends "base.html" %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/forms.css')}}">
+{% extends "base.html" %}form-group
 {% block head %}
-
+<link rel="stylesheet" href="{{url_for('static', filename='css/forms.css')}}">
 <div class="container col-6 col-md-3">
     <h2>Registro de Aluno</h2>
 </div>
@@ -217,7 +216,7 @@
                 <sstrong>{{ form[field].label }}</sstrong>: {{ ', '.join(errors) }}
             </div>
         {% endfor %}
-        <div id="formSubmit" class="form-group">
+        <div id="formSubmit" class="container col-6 col-md-3">
             {{ form.submit(class="btn bg-white text-black -btn-sm")}}
         </div>
     </form>
