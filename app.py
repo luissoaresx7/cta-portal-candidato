@@ -84,6 +84,7 @@ class Student(db.Model):
     member_family_name = db.Column(db.String(64), nullable=True)
     degree_of_kinship = db.Column(db.Integer(), nullable=True)
     age_member_family = db.Column(db.String(64), nullable=True)
+    income_member_family = db.Column(db.String(64), nullable=True)
 
     def __repr__(self):
         return f'<Student {self.complete_name}>'
@@ -294,6 +295,7 @@ def student_create():
             member_family_name = request.form['member_family_name']
             degree_of_kinship = request.form['degree_of_kinship']
             age_member_family = request.form['age_member_family']
+            income_member_family = request.form['income_member_family']
         except Exception as e:
             print(e)
 
@@ -314,33 +316,34 @@ def student_create():
                           cnh=cnh,
                           cep=cep,
                           address=address,
-                          house_number=house_number,
-                          complement_address=complement_address,
-                          tel=tel,
-                          tel_message=tel_message,
-                          personal_email=personal_email,
-                          message_email=message_email,
+                          #house_number=house_number,
+                          #omplement_address=complement_address,
+                          #tel=tel,
+                          #tel_message=tel_message,
+                          #personal_email=personal_email,
+                          #message_email=message_email,
                           #school_term=school_term,
-                          school=school,
+                          #school=school,
                           #pwd_person=pwd_person,
-                          pwd_person_affirmative=pwd_person_affirmative,
+                         #pwd_person_affirmative=pwd_person_affirmative,
                           #carrier_of_chronic_disease=carrier_of_chronic_disease,
-                          carrier_of_chronic_disease_affirmative=carrier_of_chronic_disease_affirmative,
+                          #carrier_of_chronic_disease_affirmative=carrier_of_chronic_disease_affirmative,
                           #vacine_covid=vacine_covid,
-                          mame_mom=mame_mom,
-                          profession_mom=profession_mom,
-                          scholarity_mom=scholarity_mom,
+                          #mame_mom=mame_mom,
+                          #profession_mom=profession_mom,
+                          #scholarity_mom=scholarity_mom,
                           #name_dad=name_dad,
-                          profession_dad=profession_dad,
-                          scholarity_dad=scholarity_dad,
+                          #profession_dad=profession_dad,
+                          #scholarity_dad=scholarity_dad,
                           #hildren=children,
                           #many_children=many_children,
                           #live_with_parents=live_with_parents,
-                          lives_whith_other_family=lives_whith_other_family,
-                          many_people_live_house=many_people_live_house,
-                          member_family_name=member_family_name,
-                          degree_of_kinship=degree_of_kinship,
-                          age_member_family=age_member_family
+                          #lives_whith_other_family=lives_whith_other_family,
+                          #many_people_live_house=many_people_live_house,
+                          #member_family_name=member_family_name,
+                          #degree_of_kinship=degree_of_kinship,
+                          #age_member_family=age_member_family,
+                          income_member_family=income_member_family
                           )
         print("test3")
         db.session.add(student)
@@ -397,6 +400,7 @@ def student_edit(student_id):
             member_family_name = request.form.get('member_family_name')
             degree_of_kinship = request.form.get('degree_of_kinship')
             age_member_family = request.form.get('age_member_family')
+            income_member_family = request.form.get('income_member_family')
 
             student.social_name = social_name
             student.birth_date = birth_date
@@ -439,6 +443,7 @@ def student_edit(student_id):
             student.member_family_name = member_family_name
             student.degree_of_kinship = degree_of_kinship
             student.age_member_family = age_member_family
+            student.income_member_family = income_member_family
 
             db.session.add(student)
             db.session.commit()
