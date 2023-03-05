@@ -47,6 +47,7 @@ class Student(db.Model):
     gender = db.Column(db.Integer(), nullable=True)
     marital_status = db.Column(db.Integer(), nullable=True)
     nacionality = db.Column(db.String(64), nullable=True)
+    nacionality_br = db.Column(db.Integer(), nullable=True)
     state = db.Column(db.String(64), nullable=True)
     city = db.Column(db.String(64), nullable=True)
     rg = db.Column(db.String(64), nullable=True)
@@ -63,8 +64,8 @@ class Student(db.Model):
     personal_email = db.Column(db.String(64), nullable=True)
     message_email = db.Column(db.String(64), nullable=True)
     scholarity_progress = db.Column(db.Integer(), nullable=True)
-    school_term = db.Column(db.Integer(), nullable=True)
     school = db.Column(db.String(64), nullable=True)
+    school_term = db.Column(db.Integer(), nullable=True)
     pwd_person = db.Column(db.Integer(), nullable=True)
     pwd_person_affirmative = db.Column(db.String(64), nullable=True)
     carrier_of_chronic_disease = db.Column(db.Integer(), nullable=True)
@@ -256,6 +257,7 @@ def student_create():
         raca_cor_etinia = request.form['raca_cor_etinia']
         marital_status = request.form['marital_status']
         nacionality = request.form['nacionality']
+        nacionality_br = request.form['nacionality_br']
         state = request.form['state']
         city = request.form['city']
         rg = request.form['rg']
@@ -307,6 +309,7 @@ def student_create():
                           gender=gender,
                           marital_status=marital_status,
                           nacionality=nacionality,
+                          nacionality_br=nacionality_br,
                           state=state,
                           city=city,
                           rg=rg,
@@ -365,6 +368,7 @@ def student_edit(student_id):
             gender = request.form.get('gender')
             marital_status = request.form.get('marital_status')
             nacionality = request.form.get('nacionality')
+            nacionality_br = request.form.get('nacionality_br')
             state = request.form.get('state')
             city = request.form.get('city')
             rg = request.form.get('rg')
@@ -408,6 +412,7 @@ def student_edit(student_id):
             student.gender = gender
             student.marital_status = marital_status
             student.nacionality = nacionality
+            student.nacionality_br = nacionality_br
             student.state = state
             student.city = city
             student.rg = rg
