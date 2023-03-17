@@ -63,23 +63,23 @@ class Student(db.Model):
     personal_email = db.Column(db.String(64), nullable=True)
     message_email = db.Column(db.String(64), nullable=True)
     scholarity_progress = db.Column(db.Integer(), nullable=True)
-    school_term = db.Column(db.Integer(), nullable=True)
+    school_term = db.Column(db.String(16), nullable=True)
     school = db.Column(db.String(64), nullable=True)
-    pwd_person = db.Column(db.Integer(), nullable=True)
+    pwd_person = db.Column(db.String(1), nullable=True)
     pwd_person_affirmative = db.Column(db.String(64), nullable=True)
-    carrier_of_chronic_disease = db.Column(db.Integer(), nullable=True)
+    carrier_of_chronic_disease = db.Column(db.String(1), nullable=True)
     carrier_of_chronic_disease_affirmative = db.Column(db.String(64), nullable=True)
-    vaccine_covid = db.Column(db.Integer(), nullable=True)
-    mame_mom = db.Column(db.String(64), nullable=True)
+    vaccine_covid = db.Column(db.String(16), nullable=True)
+    name_mom = db.Column(db.String(64), nullable=True)
     profession_mom = db.Column(db.String(64), nullable=True)
-    scholarity_mom = db.Column(db.Integer(), nullable=True)
-    mame_dad = db.Column(db.String(64), nullable=False)
+    scholarity_mom = db.Column(db.String(16), nullable=True)
+    name_dad = db.Column(db.String(64), nullable=False)
     profession_dad = db.Column(db.String(64), nullable=True)
-    scholarity_dad = db.Column(db.Integer(), nullable=True)
-    children = db.Column(db.Integer(), nullable=True)
-    many_childrens = db.Column(db.String(64), nullable=True)
-    live_whith_parents = db.Column(db.Integer(), nullable=True)
-    lives_whith_other_family = db.Column(db.String(64), nullable=True)
+    scholarity_dad = db.Column(db.String(16), nullable=True)
+    children = db.Column(db.String(1), nullable=True)
+    many_children = db.Column(db.String(64), nullable=True)
+    live_with_parents = db.Column(db.String(1), nullable=True)
+    lives_with_other_family = db.Column(db.String(64), nullable=True)
     many_people_live_house = db.Column(db.String(64), nullable=True)
     member_family_name = db.Column(db.String(64), nullable=True)
     degree_of_kinship = db.Column(db.Integer(), nullable=True)
@@ -185,7 +185,7 @@ class UserSub(FlaskForm):
     pwd_person_affirmative = StringField(label=('Caso sim especifique'),
         validators=[Length(max=64)])
 
-    carrier_of_chronic_disease = RadioField(label='Portador de alguma doença crônica?', choices=[('S', 'Sim'), ('S', 'Não')])
+    carrier_of_chronic_disease = RadioField(label='Portador de alguma doença crônica?', choices=[('S', 'Sim'), ('N', 'Não')])
 
     carrier_of_chronic_disease_affirmative = StringField(label=('Caso sim especifique'),
         validators=[Length(max=64)])
@@ -194,34 +194,34 @@ class UserSub(FlaskForm):
         validators=[], )
 
 #info of family composition#
-    mame_mom = StringField(label=('Nome da Mãe'),
+    name_mom = StringField(label=('Nome da Mãe'),
         validators=[Length(max=64)])
 
     profession_mom = StringField(label=('Profissão da Mãe'),
         validators=[Length(max=64)])
 
-    scholarity_mom = SelectField(u'Escolaridade da Mãe:', choices=[('', ''), ('LE_ESCREVE', 'Lê e escreve '), ('LE_ESCREVE', 'Ensino Fundamental completo '),('LE_ESCREVE', 'Ensino Fundamental incompleto '), ('EM_MEDIOCOMPLETO', 'Ensino Médio completo ')
-    , ('EM_MEDIO_INCOMPLETO', 'Ensino Médio incompleto '), ('TERCEIROGRAU_COMPLETO', 'Terceiro Grau completo'),('TERCEIROGRAU_INCOMPLETO', 'Terceiro Grau incompleto'), ('POSGRADUAÇAO_COMPLETA', 'Pós-graduação completo'),('POSGRADUAÇAO_INCOMPLETA', 'Pós-graduação incompleto')],
+    scholarity_mom = SelectField(u'Escolaridade do Pai:',choices=[('', ''), ('LE_ESCREVE', 'Lê e escreve '), ('EF_COMPLETO', 'Ensino Fundamental completo '),('EF_INCOMPLETO', 'Ensino Fundamental incompleto '), ('EM_COMPLETO', 'Ensino Médio completo ')
+    , ('EM_INCOMPLETO', 'Ensino Médio incompleto '), ('SP_COMPLETO', 'Superior completo'),('SP_INCOMPLETO', 'Superior incompleto'), ('PG_COMPLETO', 'Pós-graduação completo'),('PG_INCOMPLETO', 'Pós-graduação incompleto')],
         validators=[], )
 
-    mame_dad = StringField(label=('Nome do Pai'),
+    name_dad = StringField(label=('Nome do Pai'),
         validators=[Length(max=64)])
 
     profession_dad = StringField(label=('Profissão do Pai'),
         validators=[Length(max=64)])
 
-    scholarity_dad = SelectField(u'Escolaridade do Pai:',choices=[('', ''), ('LE_ESCREVE', 'Lê e escreve '), ('LE_ESCREVE', 'Ensino Fundamental completo '),('LE_ESCREVE', 'Ensino Fundamental incompleto '), ('EM_MEDIOCOMPLETO', 'Ensino Médio completo ')
-    , ('EM_MEDIO_INCOMPLETO', 'Ensino Médio incompleto '), ('TERCEIROGRAU_COMPLETO', 'Terceiro Grau completo'),('TERCEIROGRAU_INCOMPLETO', 'Terceiro Grau incompleto'), ('POSGRADUAÇAO_COMPLETA', 'Pós-graduação completo'),('POSGRADUAÇAO_INCOMPLETA', 'Pós-graduação incompleto')],
+    scholarity_dad = SelectField(u'Escolaridade do Pai:',choices=[('', ''), ('LE_ESCREVE', 'Lê e escreve '), ('EF_COMPLETO', 'Ensino Fundamental completo '),('EF_INCOMPLETO', 'Ensino Fundamental incompleto '), ('EM_COMPLETO', 'Ensino Médio completo ')
+    , ('EM_INCOMPLETO', 'Ensino Médio incompleto '), ('SP_COMPLETO', 'Superior completo'),('SP_INCOMPLETO', 'Superior incompleto'), ('PG_COMPLETO', 'Pós-graduação completo'),('PG_INCOMPLETO', 'Pós-graduação incompleto')],
         validators=[], )
 
     children = RadioField(label='Tem filhos?', choices=[('S', 'Sim'), ('N', 'Não')])
 
-    many_childrens =  StringField(label=('Quantos Filhos?'),
+    many_children =  StringField(label=('Quantos Filhos?'),
         validators=[Length(max=64)])
 
-    live_whith_parents = RadioField(label='Mora com seus pais?', choices=[('S', 'Sim'), ('N', 'Não')])
+    live_with_parents = RadioField(label='Mora com seus pais?', choices=[('S', 'Sim'), ('N', 'Não')])
 
-    lives_whith_other_family = StringField(label=('Caso não especifique'),
+    lives_with_other_family = StringField(label=('Caso não especifique'),
         validators=[Length(max=64)])
 
     many_people_live_house = StringField(label=('Quantas pessoas moram na sua casa?'),
@@ -260,37 +260,39 @@ def student_create():
         city = request.form['city']
         rg = request.form['rg']
         shipping_date_rg_str = request.form['shipping_date_rg']
-        print(shipping_date_rg_str)
-        shipping_date_rg = datetime.strptime(shipping_date_rg_str, "%Y-%m-%d").date() if shipping_date_rg_str != '' else None
+        shipping_date_rg = datetime.strptime(shipping_date_rg_str, "%Y-%m-%d").date() if shipping_date_rg_str else None
         shipper_rg = request.form['shipper_rg']
-        cpf = request.form['cpf']
-        cnh = request.form['cnh']
-        cep = request.form['cep']
-        address = request.form['address']
-        house_number = request.form['house_number']
-        complement_address = request.form['complement_address']
-        tel = request.form['tel']
-        tel_message = request.form['tel_message']
-        personal_email = request.form['personal_email']
-        message_email = request.form['message_email']
-        #school_term = request.form['school_term']
         try:
+            cpf = request.form['cpf']
+            cnh = request.form['cnh']
+            cep = request.form['cep']
+            address = request.form['address']
+            house_number = request.form['house_number']
+            complement_address = request.form['complement_address']
+            tel = request.form['tel']
+            tel_message = request.form['tel_message']
+            personal_email = request.form['personal_email']
+            message_email = request.form['message_email']
+            school_term = request.form['school_term'] if 'school_term' in request.form else None
             school = request.form['school']
-            #pwd_person = request.form['pwd_person']
-            pwd_person_affirmative = request.form['pwd_person_affirmative']
-            #carrier_of_chronic_disease = request.form['carrier_of_chronic_disease']
+            if 'pwd_person' in request.form:
+                pwd_person = request.form['pwd_person']
+            else:
+                pwd_person = ''
+            pwd_person_affirmative = request.form['pwd_person_affirmative'] if 'pwd_person_affirmative' in request.form else None
+            carrier_of_chronic_disease = request.form['carrier_of_chronic_disease'] if 'carrier_of_chronic_disease' in request.form else None
             carrier_of_chronic_disease_affirmative = request.form['carrier_of_chronic_disease_affirmative']
-            #vacine_covid = request.form['vacine_covid']
-            mame_mom = request.form['mame_mom']
+            vaccine_covid = request.form['vaccine_covid']
+            name_mom = request.form['name_mom']
             profession_mom = request.form['profession_mom']
             scholarity_mom = request.form['scholarity_mom']
-            #name_dad = request.form['mame_dad']
+            name_dad = request.form['name_dad']
             profession_dad = request.form['profession_dad']
             scholarity_dad = request.form['scholarity_dad']
-            #children = request.form['children']
-            #many_children = request.form['many_children']
-            #live_with_parents = request.form['live_with_parents']
-            lives_whith_other_family = request.form['lives_whith_other_family']
+            children = request.form['children'] if 'children' in request.form else None
+            many_children = request.form['many_children']
+            live_with_parents = request.form['live_with_parents'] if 'live_with_parents' in request.form else None
+            lives_with_other_family = request.form['lives_with_other_family']
             many_people_live_house = request.form['many_people_live_house']
             member_family_name = request.form['member_family_name']
             degree_of_kinship = request.form['degree_of_kinship']
@@ -316,46 +318,43 @@ def student_create():
                           cnh=cnh,
                           cep=cep,
                           address=address,
-                          #house_number=house_number,
-                          #omplement_address=complement_address,
-                          #tel=tel,
-                          #tel_message=tel_message,
-                          #personal_email=personal_email,
-                          #message_email=message_email,
-                          #school_term=school_term,
-                          #school=school,
-                          #pwd_person=pwd_person,
-                         #pwd_person_affirmative=pwd_person_affirmative,
-                          #carrier_of_chronic_disease=carrier_of_chronic_disease,
-                          #carrier_of_chronic_disease_affirmative=carrier_of_chronic_disease_affirmative,
-                          #vacine_covid=vacine_covid,
-                          #mame_mom=mame_mom,
-                          #profession_mom=profession_mom,
-                          #scholarity_mom=scholarity_mom,
-                          #name_dad=name_dad,
-                          #profession_dad=profession_dad,
-                          #scholarity_dad=scholarity_dad,
-                          #hildren=children,
-                          #many_children=many_children,
-                          #live_with_parents=live_with_parents,
-                          #lives_whith_other_family=lives_whith_other_family,
-                          #many_people_live_house=many_people_live_house,
-                          #member_family_name=member_family_name,
-                          #degree_of_kinship=degree_of_kinship,
-                          #age_member_family=age_member_family,
+                          house_number=house_number,
+                          complement_address=complement_address,
+                          tel=tel,
+                          tel_message=tel_message,
+                          personal_email=personal_email,
+                          message_email=message_email,
+                          school_term=school_term,
+                          school=school,
+                          pwd_person=pwd_person,
+                          pwd_person_affirmative=pwd_person_affirmative,
+                          carrier_of_chronic_disease=carrier_of_chronic_disease,
+                          carrier_of_chronic_disease_affirmative=carrier_of_chronic_disease_affirmative,
+                          vaccine_covid=vaccine_covid,
+                          name_mom=name_mom,
+                          profession_mom=profession_mom,
+                          scholarity_mom=scholarity_mom,
+                          name_dad=name_dad,
+                          profession_dad=profession_dad,
+                          scholarity_dad=scholarity_dad,
+                          children=children,
+                          many_children=many_children,
+                          live_with_parents=live_with_parents,
+                          lives_with_other_family=lives_with_other_family,
+                          many_people_live_house=many_people_live_house,
+                          member_family_name=member_family_name,
+                          degree_of_kinship=degree_of_kinship,
+                          age_member_family=age_member_family,
                           income_member_family=income_member_family
                           )
-        print("test3")
         db.session.add(student)
         db.session.commit()
-        print("test4")
         return redirect(url_for('student_edit', student_id=student.id))
     return render_template('formsub.html', form=form)
 
 @app.route('/student/<int:student_id>/edit/', methods=('GET', 'POST'))
 def student_edit(student_id):
     student = Student.query.get_or_404(student_id)
-    print(request.method)
     if request.method == 'POST':
         try:
             social_name = request.form.get('social_name')
@@ -368,7 +367,8 @@ def student_edit(student_id):
             state = request.form.get('state')
             city = request.form.get('city')
             rg = request.form.get('rg')
-            shipping_date_rg = request.form.get('shipping_date_rg')
+            shipping_date_rg_str = request.form['shipping_date_rg']
+            shipping_date_rg = datetime.strptime(shipping_date_rg_str, "%Y-%m-%d").date() if shipping_date_rg_str else None
             shipper_rg = request.form.get('shipper_rg')
             cpf = request.form.get('cpf')
             cnh = request.form.get('cnh')
@@ -385,17 +385,17 @@ def student_edit(student_id):
             pwd_person_affirmative = request.form.get('pwd_person_affirmative')
             carrier_of_chronic_disease = request.form.get('carrier_of_chronic_disease')
             carrier_of_chronic_disease_affirmative = request.form.get('carrier_of_chronic_disease_affirmative')
-            vacine_covid = request.form.get('vacine_covid')
-            mame_mom = request.form.get('mame_mom')
+            vaccine_covid = request.form.get('vaccine_covid')
+            name_mom = request.form.get('name_mom')
             profession_mom = request.form.get('profession_mom')
             scholarity_mom = request.form.get('scholarity_mom')
-            mame_dad = request.form.get('mame_dad')
+            name_dad = request.form.get('name_dad')
             profession_dad = request.form.get('profession_dad')
             scholarity_dad = request.form.get('scholarity_dad')
             children = request.form.get('children')
             many_children = request.form.get('many_children')
             live_with_parents = request.form.get('live_with_parents')
-            lives_whith_other_family = request.form.get('lives_whith_other_family')
+            lives_with_other_family = request.form.get('lives_with_other_family')
             many_people_live_house = request.form.get('many_people_live_house')
             member_family_name = request.form.get('member_family_name')
             degree_of_kinship = request.form.get('degree_of_kinship')
@@ -428,17 +428,17 @@ def student_edit(student_id):
             student.pwd_person_affirmative = pwd_person_affirmative
             student.carrier_of_chronic_disease = carrier_of_chronic_disease
             student.carrier_of_chronic_disease_affirmative = carrier_of_chronic_disease_affirmative
-            student.vacine_covid = vacine_covid
-            student.mame_mom = mame_mom
+            student.vaccine_covid = vaccine_covid
+            student.name_mom = name_mom
             student.profession_mom = profession_mom
             student.scholarity_mom = scholarity_mom
-            student.mame_dad = mame_dad
+            student.name_dad = name_dad
             student.profession_dad = profession_dad
             student.scholarity_dad = scholarity_dad
             student.children = children
             student.many_children = many_children
             student.live_with_parents = live_with_parents
-            student.lives_whith_other_family = lives_whith_other_family
+            student.lives_with_other_family = lives_with_other_family
             student.many_people_live_house = many_people_live_house
             student.member_family_name = member_family_name
             student.degree_of_kinship = degree_of_kinship
@@ -511,13 +511,10 @@ def login():
     form = UserLogin()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        print("teste1")
         if user is not None and user.check_password(form.password.data):
-            print("teste2")
             login_user(user)
             next = request.args.get("next")
             return redirect(next or url_for('index'))
-        print("teste3")
         flash('E-mail ou senha inválida.')
     return render_template('login.html', form=form)
 
