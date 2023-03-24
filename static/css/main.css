@@ -5,6 +5,8 @@ body{
 
 }
 
+/* index area */
+
 .logo {
     width: 39vh;
     height: 13vh;
@@ -26,6 +28,11 @@ body{
     margin-left: 30px;
 }
 
+b {
+    font-weight: 700;
+    color:#e00014;
+}
+
 #img{
    height: 500px;
    width: 900px;
@@ -39,7 +46,7 @@ body{
 .nav-link{
     color: #000000
     transform: scale(1);
-     font-weight:300%;
+    font-weight: 800;
 
 }
 
@@ -55,7 +62,27 @@ main{
     display: flex;
     flex-direction: row;
     margin-top: 40px;
+}
+
+/* forms area */
+
+.form-control{
+   border-color: #211B15;
+
+.form-group:focus{
+   border-color: #54a1c1;
+   box-shadow: 0 0 0 1rem #54a1c1;
 
 
+}
+.form-group:hover{
+   border-color: #54a1c1;
+
+}
+
+#buttonFormsub{
+    box-shadow: 0 0 0 0.010rem #000000;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
