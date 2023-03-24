@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, flash , render_template, redirect, url_for, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, \
     SubmitField, SelectField, DateField, RadioField
@@ -40,21 +40,21 @@ class User(UserMixin, db.Model):
 
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    complete_name = db.Column(db.String(64), nullable=True)
+    complete_name = db.Column(db.String(64), nullable=False)
     social_name = db.Column(db.String(64), nullable=True)
-    birth_date = db.Column(db.DateTime(80), nullable=True)
-    raca_cor_etinia = db.Column(db.Integer(), nullable=True)
+    birth_date = db.Column(db.DateTime(80), nullable=False)
+    raca_cor_etinia = db.Column(db.Integer(), nullable=False)
     gender = db.Column(db.Integer(), nullable=True)
     marital_status = db.Column(db.Integer(), nullable=True)
     nacionality = db.Column(db.String(64), nullable=True)
-    state = db.Column(db.String(64), nullable=True)
-    city = db.Column(db.String(64), nullable=True)
+    state = db.Column(db.String(64), nullable=False)
+    city = db.Column(db.String(64), nullable=False)
     rg = db.Column(db.String(64), nullable=True)
     shipping_date_rg = db.Column(db.DateTime(80), nullable=True)
     shipper_rg = db.Column(db.String(64), nullable=True)
-    cpf = db.Column(db.String(64), nullable=True)
+    cpf = db.Column(db.String(64), nullable=False)
     cnh = db.Column(db.String(64), nullable=True)
-    cep = db.Column(db.String(64), nullable=True)
+    cep = db.Column(db.String(64), nullable=False)
     address = db.Column(db.String(64), nullable=True)
     house_number = db.Column(db.String(64), nullable=True)
     complement_address = db.Column(db.String(64), nullable=True)
@@ -70,7 +70,7 @@ class Student(db.Model):
     carrier_of_chronic_disease = db.Column(db.String(1), nullable=True)
     carrier_of_chronic_disease_affirmative = db.Column(db.String(64), nullable=True)
     vaccine_covid = db.Column(db.String(16), nullable=True)
-    name_mom = db.Column(db.String(64), nullable=True)
+    name_mom = db.Column(db.String(64), nullable=False)
     profession_mom = db.Column(db.String(64), nullable=True)
     scholarity_mom = db.Column(db.String(16), nullable=True)
     name_dad = db.Column(db.String(64), nullable=False)
@@ -145,36 +145,36 @@ class UserSub(FlaskForm):
     cpf = StringField(label=('CPF:'),
         validators=[Length(max=14)])
 
-    cnh = StringField(label=('CNH'),
+    cnh = StringField(label=('CNH: '),
         validators=[Length(max=14)])
 
-    cep = StringField(label=('Cep'),
+    cep = StringField(label=('Cep:'),
         validators=[Length(max=9)])
 
-    address = StringField(label=('Endereço'),
+    address = StringField(label=('Endereço:'),
         validators=[Length(max=64)])
 
     house_number = StringField(label=('Número da casa:'),
         validators=[Length(max=6)])
 
-    complement_address = StringField(label=('Complemento'),
+    complement_address = StringField(label=('Complemento:'),
         validators=[Length(max=64)])
 
-    tel = StringField(label=('Telefone pessoal'),
+    tel = StringField(label=('Telefone pessoal:'),
         validators=[Length(max=64)])
 
-    tel_message = StringField(label=('Telefone para Recado'),
+    tel_message = StringField(label=('Telefone para Recado:'),
         validators=[Length(max=64)])
 
-    personal_email = StringField(label=('E-mail pessoal'),
+    personal_email = StringField(label=('E-mail pessoal:'),
         validators=[Length(max=64)])
 
-    message_email = StringField(label=('E-mail para Recado'),
+    message_email = StringField(label=('E-mail para Recado:'),
         validators=[Length(max=64)])
 
-    scholarity_progress = RadioField(label='Ensino Médio', choices=[('NCONCLUIDO', 'Não concluído'), ('EMANDAMENTO', 'Em andamento'),('CONCLUIDO', 'Concluído')])
+    scholarity_progress = RadioField(label='Ensino Médio:', choices=[('NCONCLUIDO', 'Não concluído'), ('EMANDAMENTO', 'Em andamento'),('CONCLUIDO', 'Concluído')])
 
-    school_term = RadioField(label='Período escolar', choices=[('MANHA', 'Manhã'), ('TARDE', 'Tarde'), ('NOTURNO', 'Noturno')])
+    school_term = RadioField(label='Período escolar:', choices=[('MANHA', 'Manhã'), ('TARDE', 'Tarde'), ('NOTURNO', 'Noturno')])
 
     school = StringField(label=('Colégio:'),
         validators=[Length(max=64)])
@@ -182,32 +182,32 @@ class UserSub(FlaskForm):
 
     pwd_person = RadioField(label='Portador de alguma deficiência?', choices=[('S', 'Sim'), ('N', 'Não')])
 
-    pwd_person_affirmative = StringField(label=('Caso sim especifique'),
+    pwd_person_affirmative = StringField(label=('Caso sim especifique:'),
         validators=[Length(max=64)])
 
     carrier_of_chronic_disease = RadioField(label='Portador de alguma doença crônica?', choices=[('S', 'Sim'), ('N', 'Não')])
 
-    carrier_of_chronic_disease_affirmative = StringField(label=('Caso sim especifique'),
+    carrier_of_chronic_disease_affirmative = StringField(label=('Caso sim especifique:'),
         validators=[Length(max=64)])
 
     vaccine_covid = SelectField(u'Vacina Covid:', choices=[('', ''), ('PRIMEIRADOSE', 'Primeira dose'), ('SEGUNDADOSE', 'Segunda dose'),('TERCEIRADOSE', 'Terceira dose'), ('QUARTADOSE', 'Quarta dose')],
         validators=[], )
 
 #info of family composition#
-    name_mom = StringField(label=('Nome da Mãe'),
+    name_mom = StringField(label=('Nome da Mãe:'),
         validators=[Length(max=64)])
 
-    profession_mom = StringField(label=('Profissão da Mãe'),
+    profession_mom = StringField(label=('Profissão da Mãe:'),
         validators=[Length(max=64)])
 
-    scholarity_mom = SelectField(u'Escolaridade do Pai:',choices=[('', ''), ('LE_ESCREVE', 'Lê e escreve '), ('EF_COMPLETO', 'Ensino Fundamental completo '),('EF_INCOMPLETO', 'Ensino Fundamental incompleto '), ('EM_COMPLETO', 'Ensino Médio completo ')
+    scholarity_mom = SelectField(u'Escolaridade da Mãe:',choices=[('', ''), ('LE_ESCREVE', 'Lê e escreve '), ('EF_COMPLETO', 'Ensino Fundamental completo '),('EF_INCOMPLETO', 'Ensino Fundamental incompleto '), ('EM_COMPLETO', 'Ensino Médio completo ')
     , ('EM_INCOMPLETO', 'Ensino Médio incompleto '), ('SP_COMPLETO', 'Superior completo'),('SP_INCOMPLETO', 'Superior incompleto'), ('PG_COMPLETO', 'Pós-graduação completo'),('PG_INCOMPLETO', 'Pós-graduação incompleto')],
         validators=[], )
 
-    name_dad = StringField(label=('Nome do Pai'),
+    name_dad = StringField(label=('Nome do Pai:'),
         validators=[Length(max=64)])
 
-    profession_dad = StringField(label=('Profissão do Pai'),
+    profession_dad = StringField(label=('Profissão do Pai:'),
         validators=[Length(max=64)])
 
     scholarity_dad = SelectField(u'Escolaridade do Pai:',choices=[('', ''), ('LE_ESCREVE', 'Lê e escreve '), ('EF_COMPLETO', 'Ensino Fundamental completo '),('EF_INCOMPLETO', 'Ensino Fundamental incompleto '), ('EM_COMPLETO', 'Ensino Médio completo ')
@@ -221,25 +221,25 @@ class UserSub(FlaskForm):
 
     live_with_parents = RadioField(label='Mora com seus pais?', choices=[('S', 'Sim'), ('N', 'Não')])
 
-    lives_with_other_family = StringField(label=('Caso não especifique'),
+    lives_with_other_family = StringField(label=('Caso não especifique:'),
         validators=[Length(max=64)])
 
     many_people_live_house = StringField(label=('Quantas pessoas moram na sua casa?'),
         validators=[Length(max=64)])
 
-    member_family_name = StringField(label=('Nome'),
+    member_family_name = StringField(label=('Nome:'),
         validators=[Length(max=64)])
 
     degree_of_kinship = SelectField(u'Grau de parentesco:', choices=[('', ''), ('MAEPAI', 'Mãe/pai'), ('IRMAOIRMA', 'irmão/irmã'),('AVOVO', 'Avô/Avó'),('TIATIO', 'Tia/Tio')],
         validators=[], )
 
-    age_member_family = StringField(label=('Idade'),
+    age_member_family = StringField(label=('Idade:'),
         validators=[Length(max=64)])
 
-    income_member_family = StringField(label=('Caso trabalhe informe o valor da renda'),
+    income_member_family = StringField(label=('Caso trabalhe informe o valor da renda:'),
         validators=[Length(max=64)])
 
-    submit = SubmitField(label=('Enviar'))
+    submit = SubmitField(label=('Enviar:'))
 
 @login_manager.user_loader
 def load_user(user_id):

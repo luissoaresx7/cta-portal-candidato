@@ -18,7 +18,8 @@ body{
 
 }
 
-#formSubmit{
+#buttonFormsub{
     box-shadow: 0 0 0 0.010rem #000000;
-    padding-top: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
