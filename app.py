@@ -518,6 +518,15 @@ def login():
         flash('E-mail ou senha inválida.')
     return render_template('login.html', form=form)
 
+#forget_password#
+
+@app.route('/forgetpassword', methods=('GET', 'POST'))
+def forget_password():
+    return render_template('forget_password', )
+
+
+
+
 #INDEX#
 @app.route('/', methods=('GET', 'POST'))
 def index():

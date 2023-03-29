@@ -44,7 +44,7 @@ b {
 }
 
 .nav-link{
-    color: #FFFFFF
+    color: #FFF
     transform: scale(1);
     font-weight: 800;
 
@@ -52,7 +52,7 @@ b {
 
 
 .nav-link:hover{
-    color: #FFFFFF
+    color: #FFF
     transform: scale(1.2);
     text-decoration: underline;
 
