@@ -40,21 +40,22 @@ class User(UserMixin, db.Model):
 
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(User.id))
     complete_name = db.Column(db.String(64), nullable=False)
     social_name = db.Column(db.String(64), nullable=True)
-    birth_date = db.Column(db.DateTime(80), nullable=False)
-    raca_cor_etinia = db.Column(db.Integer(), nullable=False)
+    birth_date = db.Column(db.DateTime(80), nullable=True)
+    raca_cor_etinia = db.Column(db.Integer(), nullable=True)
     gender = db.Column(db.Integer(), nullable=True)
     marital_status = db.Column(db.Integer(), nullable=True)
     nacionality = db.Column(db.String(64), nullable=True)
-    state = db.Column(db.String(64), nullable=False)
-    city = db.Column(db.String(64), nullable=False)
+    state = db.Column(db.String(64), nullable=True)
+    city = db.Column(db.String(64), nullable=True)
     rg = db.Column(db.String(64), nullable=True)
     shipping_date_rg = db.Column(db.DateTime(80), nullable=True)
     shipper_rg = db.Column(db.String(64), nullable=True)
-    cpf = db.Column(db.String(64), nullable=False)
+    cpf = db.Column(db.String(64), nullable=True)
     cnh = db.Column(db.String(64), nullable=True)
-    cep = db.Column(db.String(64), nullable=False)
+    cep = db.Column(db.String(64), nullable=True)
     address = db.Column(db.String(64), nullable=True)
     house_number = db.Column(db.String(64), nullable=True)
     complement_address = db.Column(db.String(64), nullable=True)
@@ -70,10 +71,10 @@ class Student(db.Model):
     carrier_of_chronic_disease = db.Column(db.String(1), nullable=True)
     carrier_of_chronic_disease_affirmative = db.Column(db.String(64), nullable=True)
     vaccine_covid = db.Column(db.String(16), nullable=True)
-    name_mom = db.Column(db.String(64), nullable=False)
+    name_mom = db.Column(db.String(64), nullable=True)
     profession_mom = db.Column(db.String(64), nullable=True)
     scholarity_mom = db.Column(db.String(16), nullable=True)
-    name_dad = db.Column(db.String(64), nullable=False)
+    name_dad = db.Column(db.String(64), nullable=True)
     profession_dad = db.Column(db.String(64), nullable=True)
     scholarity_dad = db.Column(db.String(16), nullable=True)
     children = db.Column(db.String(1), nullable=True)
@@ -85,6 +86,8 @@ class Student(db.Model):
     degree_of_kinship = db.Column(db.Integer(), nullable=True)
     age_member_family = db.Column(db.String(64), nullable=True)
     income_member_family = db.Column(db.String(64), nullable=True)
+
+    user = db.relationship('User', foreign_keys='Student.user_id' )
 
     def __repr__(self):
         return f'<Student {self.complete_name}>'
@@ -99,6 +102,9 @@ class UserSub(FlaskForm):
         Length(max=64)])
 
     social_name = StringField(label=('Nome social:'),
+        validators=[Length(max=64)])
+
+    personal_email = StringField(label=('E-mail pessoal:'),
         validators=[Length(max=64)])
 
     birth_date = DateField(label=('Data de nascimento:'),
@@ -166,8 +172,6 @@ class UserSub(FlaskForm):
     tel_message = StringField(label=('Telefone para Recado:'),
         validators=[Length(max=64)])
 
-    personal_email = StringField(label=('E-mail pessoal:'),
-        validators=[Length(max=64)])
 
     message_email = StringField(label=('E-mail para Recado:'),
         validators=[Length(max=64)])
@@ -240,6 +244,22 @@ class UserSub(FlaskForm):
         validators=[Length(max=64)])
 
     submit = SubmitField(label=('Enviar:'))
+
+
+
+
+def create_student(user_id, complete_name, personal_email):
+    student = Student(complete_name=complete_name,
+                      personal_email=personal_email,
+                      user_id=user_id
+                      )
+    db.session.add(student)
+    db.session.commit()
+    return student
+
+
+
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -486,7 +506,8 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('login'))
+        student = create_student(user.id,user.username,user.email)
+        return redirect(url_for('student_edit', student_id=student.id))
     return render_template('register.html', form=form)
 
 
@@ -519,6 +540,11 @@ def login():
     return render_template('login.html', form=form)
 
 #forget_password#
+
+
+
+
+
 
 
 class ForgetPassword(FlaskForm):
