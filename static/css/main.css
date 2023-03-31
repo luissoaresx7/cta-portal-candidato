@@ -43,16 +43,23 @@ b {
 
 }
 
+
+
+li a {
+    color: #FFFFFF;
+
+}
+
 .nav-link{
-    color: #FFF
-    transform: scale(1);
-    font-weight: 800;
+
+    transform: scale(1.0);
+
 
 }
 
 
 .nav-link:hover{
-    color: #FFF
+    color: #FFFFFF;
     transform: scale(1.2);
     text-decoration: underline;
 

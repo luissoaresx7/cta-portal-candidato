@@ -520,9 +520,29 @@ def login():
 
 #forget_password#
 
+
+class ForgetPassword(FlaskForm):
+    class Meta:
+        locales = ['pt_BR', 'pt']
+        def get_translations(self, form):
+            return super(FlaskForm.Meta, self).get_translations(form)
+    new_passhash = PasswordField(label=('Digite sua nova senha'),
+        validators=[DataRequired(),
+        Length(min=8, message='A senha deve ter no mínimo %(min)d caracteres.')])
+
+    confirm_new_passhash = PasswordField(label=('Confirme sua nova senha'),
+         validators=[DataRequired(),
+         Length(min=8, message='A senha deve ter no mínimo %(min)d caracteres.')])
+
+    submit = SubmitField(label=('Enviar'))
+
+
+
+
 @app.route('/forgetpassword', methods=('GET', 'POST'))
 def forget_password():
-    return render_template('forget_password', )
+    form = ForgetPassword()
+    return render_template('forget_password.html',form=form )
 
 
 
@@ -536,4 +556,4 @@ def index():
 # @login_required
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('index.html'))
