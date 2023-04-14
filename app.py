@@ -9,6 +9,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_jwt_extended import JWTManager
+from flask_mail import Mail
+
 
 
 app = Flask(__name__, template_folder='templates')
@@ -18,11 +21,33 @@ app.config['SECRET_KEY'] = 'QWKLWJKWHEFJHWEJFSHKJDAHFKJSHDFJKHSJKHF'
 app.config['SQLALCHEMY_DATABASE_URI'] =\
         'sqlite:///' + os.path.join(basedir, 'database.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+#email reset password
+app.config['MAIL_SERVER'] = 'cta.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USERNAME'] = "username@gmail.com"
+app.config['MAIL_PASSWORD'] = "password"
+mail = Mail(app)
 
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
+jwt = JWTManager()
+mail = Mail()
 
+
+
+def send_email(user):
+
+    token = user.get_reset_token()
+
+    msg = Message()
+    msg.subject = "Flask App Password Reset"
+    msg.sender = os.getenv('MAIL_USERNAME')
+    msg.recipients = [user.email]
+    msg.html = render_template('reset_email.html', user=user, token=token)
+
+    mail.send(msg)
 
 class User(UserMixin, db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -36,6 +61,8 @@ class User(UserMixin, db.Model):
 
   def check_password(self, password):
       return check_password_hash(self.password_hash, password)
+
+
 
 
 class Student(db.Model):
@@ -539,38 +566,49 @@ def login():
         flash('E-mail ou senha inválida.')
     return render_template('login.html', form=form)
 
-#forget_password#
 
+#reset password#
+class EmailForm(Form):
 
+    email = StringField(label=('E-mail'),
+        validators=[DataRequired(),
+        Email(),
+        Length(max=120)])
 
+class ResetPassword(Form):
 
-
-
-
-class ForgetPassword(FlaskForm):
-    class Meta:
-        locales = ['pt_BR', 'pt']
-        def get_translations(self, form):
-            return super(FlaskForm.Meta, self).get_translations(form)
-    new_passhash = PasswordField(label=('Digite sua nova senha'),
+    password = PasswordField(label=('Digite sua nova Senha'),
         validators=[DataRequired(),
         Length(min=8, message='A senha deve ter no mínimo %(min)d caracteres.')])
 
-    confirm_new_passhash = PasswordField(label=('Confirme sua nova senha'),
-         validators=[DataRequired(),
-         Length(min=8, message='A senha deve ter no mínimo %(min)d caracteres.')])
-
-    submit = SubmitField(label=('Enviar'))
 
 
 
+@app.route('/reset', methods=["GET", "POST"])
+def resetPassword():
+    form = EmailForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first_or_404()
 
-@app.route('/forgetpassword', methods=('GET', 'POST'))
-def forget_password():
-    form = ForgetPassword()
-    return render_template('forget_password.html',form=form )
+        subject = "Password reset requested"
 
 
+        token = ts.dumps(self.email, salt='recover-key')
+
+        recover_url = url_for(
+            'reset_with_token',
+            token=token,
+            _external=True)
+
+        html = render_template(
+            'email/recover.html',
+            recover_url=recover_url)
+
+
+        send_email(user.email, subject, html)
+
+        return redirect(url_for('index'))
+    return render_template('forget_password.html', form=form)
 
 
 #INDEX#
