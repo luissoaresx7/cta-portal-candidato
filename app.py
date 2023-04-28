@@ -24,8 +24,8 @@ app.config['MAIL_SERVER'] = "smtp.googlemail.com"
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USERNAME'] = "luissoaresx7@gmail.com"
 app.config['MAIL_PASSWORD'] = 'waqvktuqkccxeakg'
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_sLS'] = True
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SLS'] = True
 
 
 
@@ -566,7 +566,7 @@ class ForgetPassword(FlaskForm):
         locales = ['pt_BR', 'pt']
         def get_translations(self, form):
             return super(FlaskForm.Meta, self).get_translations(form)
-    email_confirmation = StringField(label=('E-mail'),
+    email_confirmation = StringField(label=('Email'),
         validators=[DataRequired(),
         Email(),
         Length(max=120)])
@@ -587,6 +587,9 @@ def resetpassword():
 
 
     return render_template('forget_password.html', form=form)
+
+#@app.route('/my-route')def my_route(): page = request.args.get('page', default = 1, type = int) filter = request.args.get('filter', default = '*', type = str)
+
 
 
 #INDEX#
