@@ -20,10 +20,10 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SECRET_KEY'] = 'QWKLWJKWHEFJHWEJFSHKJDAHFKJSHDFJKHSJKHF'
 app.config['SQLALCHEMY_DATABASE_URI'] =\
         'sqlite:///' + os.path.join(basedir, 'database.db')
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'luissoaresx7@gmail.com'
-app.config['MAIL_PASSWORD'] = os.environ.get('gkcxijoayfdgwpxb')
+app.config['MAIL_SERVER'] = "smtp.googlemail.com"
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USERNAME'] = "luissoaresx7@gmail.com"
+app.config['MAIL_PASSWORD'] = 'waqvktuqkccxeakg'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_sLS'] = True
 
@@ -579,11 +579,11 @@ class ForgetPassword(FlaskForm):
 def resetpassword():
     form = ForgetPassword()
     if request.method == 'POST':
-        msg = Message("Olá", sender='noreply@demo.com',
+        msg = Message("Olá", sender='noretply@app.com',
                       recipients=['luissoaresx7@gmail.com'])
         msg.body = "esqueceu sua senha?"
         mail.send(msg)
-        return "Email enviadoo"
+        return "Email enviado"
 
 
     return render_template('forget_password.html', form=form)
